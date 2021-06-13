@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BookShop.Models;
+using BookShop.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MySql.EntityFrameworkCore.Extensions;
+using Sieve.Services;
 
 namespace BookShop
 {
@@ -34,6 +36,7 @@ namespace BookShop
                 options.UseMySQL(Configuration.GetConnectionString("DefaultConnection"));
             });
             
+            services.AddScoped<ISieveProcessor, ApplicationSieveProcessor>();
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
