@@ -7742,11 +7742,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Tài liệu học tập\\Front-end\\booksite\\C#\\Booksite\\BookShop.csproj",
+      "projectUniqueName": "D:\\Tài liệu học tập\\Front-end\\Booksite\\Booksite\\BookShop.csproj",
       "projectName": "BookShop",
-      "projectPath": "D:\\Tài liệu học tập\\Front-end\\booksite\\C#\\Booksite\\BookShop.csproj",
+      "projectPath": "D:\\Tài liệu học tập\\Front-end\\Booksite\\Booksite\\BookShop.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\Tài liệu học tập\\Front-end\\booksite\\C#\\Booksite\\obj\\",
+      "outputPath": "D:\\Tài liệu học tập\\Front-end\\Booksite\\Booksite\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"

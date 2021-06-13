@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nvFj1aKXsl8JrJ44EV5zxorvG0iJi1zFv5OjbHY9jYYZebkqKM5lDYe3B1YOfuoYDjbYCF0ds5+pXqgiT7C3iQ==",
+  "dgSpecHash": "2GfeRJ84pCRIG138m7GoTawjUnQas4aj1WRF8nVwqtRNgYUd0apuEvDfHrrGIEzWNXKEfB3Qpvj8YliuH3mshg==",
   "success": true,
-  "projectFilePath": "D:\\Tài liệu học tập\\Front-end\\booksite\\C#\\Booksite\\BookShop.csproj",
+  "projectFilePath": "D:\\Tài liệu học tập\\Front-end\\Booksite\\Booksite\\BookShop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",
