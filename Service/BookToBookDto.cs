@@ -18,6 +18,7 @@ namespace BookShop.Service
             bookDto.Publisher = book.Publisher;
             bookDto.PublishingYear = book.PublishingYear;
             bookDto.Status = book.Status;
+            bookDto.ImageUrl = book.ImageUrl;
             return bookDto;
         }
     }

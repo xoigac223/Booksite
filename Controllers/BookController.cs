@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BookShop.DTO;
@@ -6,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BookShop.Models;
 using BookShop.Service;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace BookShop.Controllers
 {
@@ -14,10 +17,12 @@ namespace BookShop.Controllers
     public class BookController : ControllerBase
     {
         private readonly BookshopContext _context;
+        private readonly IWebHostEnvironment _environment;
 
-        public BookController(BookshopContext context)
+        public BookController(BookshopContext context, IWebHostEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
 
         // GET: api/Book
@@ -63,13 +68,30 @@ namespace BookShop.Controllers
         // PUT: api/Book/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBook(int id, Book book)
+        public async Task<IActionResult> PutBook(int id, [FromForm] BookFormDto bookFormDto)
         {
+            Book book = BookFromDtoToBook.Convert(bookFormDto);
             if (id != book.Id)
             {
                 return BadRequest();
             }
+            if (bookFormDto.ImageFile != null)
+            {
+                if (bookFormDto.ImageFile.Length > 0)
+                {
+                    if (!Directory.Exists(_environment.WebRootPath + "//images//books//"))
+                    {
+                        Directory.CreateDirectory(_environment.WebRootPath + "//images//books//");
+                    }
 
+                    using (FileStream fileStream = System.IO.File.Create(_environment.WebRootPath + "//images/books//" + bookFormDto.ImageFile.FileName))
+                    {
+                        bookFormDto.ImageFile.CopyTo(fileStream);
+                        fileStream.Flush();
+                        book.ImageUrl = "/images/books/" + bookFormDto.ImageFile.FileName;
+                    }
+                }
+            }
             _context.Entry(book).State = EntityState.Modified;
 
             try
@@ -94,11 +116,30 @@ namespace BookShop.Controllers
         // POST: api/Book
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Book>> PostBook(Book book)
+        public async Task<ActionResult<Book>> PostBook([FromForm] BookFormDto bookFormDto)
         {
+            Book book = BookFromDtoToBook.Convert(bookFormDto);
+
+            if (bookFormDto.ImageFile != null)
+            {
+                if (bookFormDto.ImageFile.Length > 0)
+                {
+                    if (!Directory.Exists(_environment.WebRootPath + "//images//books//"))
+                    {
+                        Directory.CreateDirectory(_environment.WebRootPath + "//images//books//");
+                    }
+
+                    using (FileStream fileStream = System.IO.File.Create(_environment.WebRootPath + "//images//books//" + bookFormDto.ImageFile.FileName))
+                    {
+                        bookFormDto.ImageFile.CopyTo(fileStream);
+                        fileStream.Flush();
+                        book.ImageUrl = "/images/books/" + bookFormDto.ImageFile.FileName;
+                    }
+                }
+            }
+            
             _context.Books.Add(book);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetBook", new { id = book.Id }, book);
         }
 
