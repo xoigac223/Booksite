@@ -7737,19 +7737,19 @@
     ]
   },
   "packageFolders": {
-    "/home/dao/.nuget/packages/": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/dao/ProjectC#/BookShop/BookShop.csproj",
+      "projectUniqueName": "D:\\Tài liệu học tập\\Front-end\\Booksite\\Booksite\\BookShop.csproj",
       "projectName": "BookShop",
-      "projectPath": "/home/dao/ProjectC#/BookShop/BookShop.csproj",
-      "packagesPath": "/home/dao/.nuget/packages/",
-      "outputPath": "/home/dao/ProjectC#/BookShop/obj/",
+      "projectPath": "D:\\Tài liệu học tập\\Front-end\\Booksite\\Booksite\\BookShop.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "D:\\Tài liệu học tập\\Front-end\\Booksite\\Booksite\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/dao/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -7828,7 +7828,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.301/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

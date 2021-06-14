@@ -50,7 +50,7 @@
 						<nav class="mainmenu__nav">
 							<ul class="meninmenu d-flex justify-content-start">
 								<li class="drop with--one--item">
-									<a href="index-2.html">Home</a>
+									<a href="index.html">Home</a>
 								</li>
 								<li class="drop"><a href="#">Shop</a>
 									<div class="megamenu mega03">
@@ -63,7 +63,6 @@
 											<li><a href="my-account.html">My Account</a></li>
 											<li><a href="cart.html">Cart Page</a></li>
 											<li><a href="checkout.html">Checkout Page</a></li>
-											<li><a href="wishlist.html">Wishlist Page</a></li>
 											<li><a href="error404.html">404 Page</a></li>
 										</ul>
 										<ul class="item item03">
@@ -131,7 +130,6 @@
 											<li><a href="my-account.html">My Account</a></li>
 											<li><a href="cart.html">Cart Page</a></li>
 											<li><a href="checkout.html">Checkout Page</a></li>
-											<li><a href="wishlist.html">Wishlist Page</a></li>
 											<li><a href="error404.html">404 Page</a></li>
 										</ul>
 									</div>
@@ -152,11 +150,11 @@
 											<span>close</span>
 										</div>
 										<div class="items-total d-flex justify-content-between">
-											<span>3 items</span>
+											<span class="item-total__num"></span>
 											<span>Cart Subtotal</span>
 										</div>
 										<div class="total_amount text-right">
-											<span>$66.00</span>
+											<span class="total_amount-price"></span>
 										</div>
 										<div class="mini_action checkout">
 											<a class="checkout__btn" href="cart.html">Go to Checkout</a>
@@ -296,48 +294,21 @@
 					<div class="col-lg-12 d-none">
 						<nav class="mobilemenu__nav">
 							<ul class="meninmenu">
-								<li><a href="index.html">Home</a>
-									<ul>
-										<li><a href="index.html">Home Style Default</a></li>
-										<li><a href="index-2.html">Home Style Two</a></li>
-										<li><a href="index-box.html">Home Box Style</a></li>
-									</ul>
+								<li>
+									<a href="index.html">Home</a>
 								</li>
 								<li><a href="#">Pages</a>
 									<ul>
 										<li><a href="about.html">About Page</a></li>
-										<li><a href="portfolio.html">Portfolio</a>
-											<ul>
-												<li><a href="portfolio.html">Portfolio</a></li>
-												<li><a href="portfolio-three-column.html">Portfolio 3 Column</a></li>
-												<li><a href="portfolio-details.html">Portfolio Details</a></li>
-											</ul>
-										</li>
 										<li><a href="my-account.html">My Account</a></li>
 										<li><a href="cart.html">Cart Page</a></li>
 										<li><a href="checkout.html">Checkout Page</a></li>
-										<li><a href="wishlist.html">Wishlist Page</a></li>
 										<li><a href="error404.html">404 Page</a></li>
-										<li><a href="faq.html">Faq Page</a></li>
-										<li><a href="team.html">Team Page</a></li>
 									</ul>
 								</li>
 								<li><a href="shop-grid.html">Shop</a>
 									<ul>
 										<li><a href="shop-grid.html">Shop Grid</a></li>
-										<li><a href="shop-list.html">Shop List</a></li>
-										<li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
-										<li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-										<li><a href="shop-no-sidebar.html">Shop No sidebar</a></li>
-										<li><a href="single-product.html">Single Product</a></li>
-									</ul>
-								</li>
-								<li><a href="blog.html">Blog</a>
-									<ul>
-										<li><a href="blog.html">Blog Page</a></li>
-										<li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-										<li><a href="blog-no-sidebar.html">Blog No Sidebar</a></li>
-										<li><a href="blog-details.html">Blog Details</a></li>
 									</ul>
 								</li>
 								<li><a href="contact.html">Contact</a></li>
@@ -389,76 +360,9 @@
         <div class="maincontent bg--white pt--80 pb--55">
         	<div class="container">
         		<div class="row">
-        			<div class="col-lg-9 col-12">
+        			<div class="col-12">
         				<div class="wn__single__product">
-        					<div class="row">
-        						<div class="col-lg-6 col-12">
-        							<div class="wn__fotorama__wrapper">
-	        							<div class="fotorama wn__fotorama__action" data-nav="thumbs">
-		        							  <a href="1.jpg"><img src="images/product/1.jpg" alt=""></a>
-		        							  <a href="2.jpg"><img src="images/product/2.jpg" alt=""></a>
-		        							  <a href="3.jpg"><img src="images/product/3.jpg" alt=""></a>
-		        							  <a href="4.jpg"><img src="images/product/4.jpg" alt=""></a>
-		        							  <a href="5.jpg"><img src="images/product/5.jpg" alt=""></a>
-		        							  <a href="6.jpg"><img src="images/product/6.jpg" alt=""></a>
-		        							  <a href="7.jpg"><img src="images/product/7.jpg" alt=""></a>
-		        							  <a href="8.jpg"><img src="images/product/8.jpg" alt=""></a>
-	        							</div>
-        							</div>
-        						</div>
-        						<div class="col-lg-6 col-12">
-        							<div class="product__info__main">
-        								<h1>Chaz Kangeroo Hoodie</h1>
-        								<div class="product-info-stock-sku d-flex">
-        									<p>Availability:<span> In stock</span></p>
-        									<p>SKU:<span> MH01</span></p>
-        								</div>
-        								<div class="product-reviews-summary d-flex">
-        									<ul class="rating-summary d-flex">
-    											<li><i class="zmdi zmdi-star-outline"></i></li>
-    											<li><i class="zmdi zmdi-star-outline"></i></li>
-    											<li><i class="zmdi zmdi-star-outline"></i></li>
-    											<li class="off"><i class="zmdi zmdi-star-outline"></i></li>
-    											<li class="off"><i class="zmdi zmdi-star-outline"></i></li>
-        									</ul>
-        									<div class="reviews-actions d-flex">
-        										<a href="#">(1 Review)</a>
-        										<a href="#">Add Your Review</a>
-        									</div>
-        								</div>
-        								<div class="price-box">
-        									<span>$52.00</span>
-        								</div>
-        								<div class="product-color-label">
-        									<span>Color</span>
-        									<div class="color__attribute d-flex">
-        										<div class="swatch-option color" style="background: #000000 no-repeat center; background-size: initial;"></div>
-        										<div class="swatch-option color" style="background: #8f8f8f no-repeat center; background-size: initial;"></div>
-        									</div>
-        								</div> 
-        								<div class="box-tocart d-flex">
-        									<span>Qty</span>
-        									<input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number">
-        									<div class="addtocart__actions">
-        										<button class="tocart" type="submit" title="Add to Cart">Add to Cart</button>
-        									</div>
-        								</div>
-        								<div class="product-addto-links clearfix">
-        									<a class="wishlist" href="#"></a>
-        									<a class="compare" href="#"></a>
-        									<a class="email" href="#"></a>
-        								</div>
-        								<div class="product__overview">
-        									<p>Ideal for cold-weather training or work outdoors, the Chaz Hoodie promises superior warmth with every wear. Thick material blocks out the wind as ribbed cuffs and bottom band seal in body heat.</p>
-        									<ul class="pro__attribute">
-        										<li>• Two-tone gray heather hoodie.</li>
-        										<li>• Drawstring-adjustable hood. </li>
-        										<li>• Machine wash/dry.</li>
-        									</ul>
-        								</div>
-        							</div>
-        						</div>
-        					</div>
+        					
         				</div>
         				<div class="product__info__detailed">
 							<div class="pro_details_nav nav justify-content-start" role="tablist">
@@ -1046,7 +950,7 @@
 							</div>
 						</div>
         			</div>
-        			<div class="col-lg-3 col-12 md-mt-40 sm-mt-40">
+        			<!-- <div class="col-lg-3 col-12 md-mt-40 sm-mt-40">
         				<div class="shop__sidebar">
         					<aside class="wedget__categories poroduct--cat">
         						<h3 class="wedget__title">Product Categories</h3>
@@ -1123,7 +1027,7 @@
 								</div>
         					</aside>
         				</div>
-        			</div>
+        			</div> -->
         		</div>
         	</div>
         </div>
@@ -1333,6 +1237,7 @@
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/plugins.js"></script>
+	<script src="controller/single-product.js"></script>
 	<script src="js/active.js"></script>
 	
 </body>

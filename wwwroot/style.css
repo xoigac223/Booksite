@@ -790,8 +790,8 @@ a {
 
 /* spacing */
 
-.mt--20 {
-  margin-top: 20px;
+.mt--10 {
+  margin-top: 10px;
 }
 
 .mt--30 {
@@ -3615,7 +3615,6 @@ nav.menu ul li a {
 .product.product__style--3 .product__content .prize li {
   color: #ce7852;
   font-size: 14px;
-  margin-right: 15px;
   font-weight: 700;
 }
 
@@ -3847,7 +3846,6 @@ nav.menu ul li a {
 }
 
 .product-info .select__color .color__list li a {
-  background: #f10 none repeat scroll 0 0;
   border-radius: 100%;
   display: block;
   height: 30px;
@@ -3859,6 +3857,10 @@ nav.menu ul li a {
 
 .product-info .select__color .color__list li+li {
   margin-left: 15px;
+}
+
+.product-info .select__color .color__list li.red a{
+  background: #f10 none repeat scroll 0 0;
 }
 
 .product-info .select__color .color__list li.gold a {
@@ -5170,7 +5172,7 @@ h3.widget-title-modal {
 
 .post__itam .content .post__time span {
   display: inline-block;
-  float: left;
+  /* float: left; */
   font-size: 13px;
   margin-bottom: 15px;
 }
@@ -5589,7 +5591,7 @@ h3.widget-title-modal {
 }
 
 .product__info__main .box-tocart {
-  margin: 30px 0 15px;
+  margin: 70px 0 15px;
 }
 
 .product__info__main .box-tocart span {
@@ -5614,6 +5616,7 @@ h3.widget-title-modal {
 .product__info__main .box-tocart .addtocart__actions .tocart {
   background: #2e2e2e url("images/icons/cart4.png") no-repeat scroll -30px center;
   border: 0 none;
+  outline: none;
   border-radius: 25px;
   color: #fff;
   font-size: 12px;
@@ -6515,7 +6518,7 @@ h3.widget-title-modal {
   clear: none;
   color: #ffffff;
   display: inline-block;
-  float: right;
+  /* float: right; */
   font-size: 16px;
   font-weight: 400;
   height: 50px;
