@@ -60,14 +60,17 @@ namespace BookShop.Controllers
                     expires: DateTime.Now.AddHours(3),  
                     claims: authClaims,  
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)  
-                );  
+                );
+
+                User u = _bookshopContext.Users.Find(user.UserName);
+                HttpContext.Session.SetString("user", Newtonsoft.Json.JsonConvert.SerializeObject(u));
                 
                 return Ok(new  
                 {  
                     token = new JwtSecurityTokenHandler().WriteToken(token),  
                     expiration = token.ValidTo  
                 });  
-            }  
+            }
             return Unauthorized();  
         }
         
