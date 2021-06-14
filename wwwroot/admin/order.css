@@ -1,0 +1,104 @@
+.table-order {
+  position: relative;
+  margin: 70px 20px 0 5px;
+  padding: 120px 20px 20px 20px;
+  background: #fff;
+  border-bottom: 0;
+  box-shadow: 0 0 2rem 0 rgb(41 48 66 / 10%);
+  height: auto;
+}
+
+.table-content {
+  padding-top: 100px;
+}
+
+thead {
+  background-color: #868fff;
+  color: #f0f0f0;
+  font-size: 15px;
+}
+
+td {
+  max-width: 100px;
+  word-wrap: break-word;
+  vertical-align: middle !important;
+}
+
+.title {
+  position: absolute;
+  /* display: flex; */
+  /* justify-content: center; */
+  align-items: center;
+  font-size: 23px;
+  /* font-weight: 600; */
+  width: 90%;
+  height: 70px;
+  top: -25px;
+  left: 5%;
+  border-radius: 5px;
+  color: #ececec;
+  box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(0 0 0 / 14%);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(244, 236, 1, 0.5777661406359419) 0%,
+    rgba(252, 184, 89, 0.44611347957151615) 0%,
+    rgba(150, 1, 242, 0.9671218829328606) 0%,
+    rgba(174, 42, 230, 0.9839286056219363) 77%
+  );
+}
+
+.pagination-wrapper {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save-btn {
+  font-size: 16px;
+  margin: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-action {
+  font-size: 11px;
+}
+
+.form-group {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+label {
+  width: 20%;
+  font-size: 14px;
+  margin-right: 5px;
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+.modal {
+	padding-left: 100px;
+}
+
+.modal-dialog {
+  max-width: 1100px;
+}
+
+.add-btn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.add-btn button .fas {
+  margin-right: 5px;
+}
+
+
+

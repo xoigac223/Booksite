@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="order.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<title>Admin</title>
+</head>
+
+<body>
+	<div class="fluid-container admin-container">
+		<div class="row admin-layout">
+			<div class="col-lg-2 sidebar-wrapper">
+				<div class="sidebar">
+					<div class="sidebar-header">
+						<i class="fas fa-book"></i>
+						Book Admin
+					</div>
+					<hr />
+					<div class="item">
+						<a href="index.html" class="item_link">
+							<i class="fas fa-home"></i>
+							Home
+						</a>
+					</div>
+					<div class="item">
+						<a href="order.html" class="item_link">
+							<i class="fas fa-gift"></i>
+							Order
+						</a>
+					</div>
+					<div class="item">
+						<a href="book.html" class="item_link"><i class="fas fa-book"></i>Book</a>
+					</div>
+					<div class="item">
+						<a href="#" class="item_link">Home</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-10">
+
+				<!-- header nav -->
+
+				<div class="row nav">
+					<div class="nav-icon-list">
+						<i class="fas fa-list"></i>
+					</div>
+				</div>
+
+				<!-- content -->
+
+				<div class="row table-order">
+					<div class="title">
+						<div style="font-size: 18px;
+						padding: 10px;
+						padding-bottom: 5px;">Order Table</div>
+						<div style="font-size: 14px;padding-left: 10px;">Here is details's order table</div>
+					</div>
+					<div class="form-group">
+						<label for="status">Status</label>
+						<select class="form-control" name="status" id="status">
+							<option value="0">Pendding</option>
+							<option value="1">Success</option>
+						</select>
+					</div>
+					<table class="table table-hover table-bordered table-striped text-lg-center table-content">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Username</th>
+								<th>Address</th>
+								<th>Phone customer</th>
+								<th>Book</th>
+								<th>Price</th>
+								<th>Quantity</th>
+								<th>Date bill</th>
+								<th style="width:10%;">Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Doe</td>
+								<td>john@exampld</td>
+								<td>Johns</td>
+								<td>Doed</td>
+								<td>john@</td>
+								<td>John</td>
+								<td>Doe</td>
+								<td id="action">
+									<button class="btn btn-primary btn-action">Confirm</button>
+								</td>
+								<tr>
+									<td>1</td>
+									<td>Doe</td>
+									<td>john@exampld</td>
+									<td>Johns</td>
+									<td>Doed</td>
+									<td>john@</td>
+									<td>John</td>
+									<td>Doe</td>
+									<td id="action">
+										<button class="btn btn-primary btn-action">Confirm</button>
+									</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<!-- Pagination -->
+
+					<div class="pagination-wrapper">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+								<li class="page-item">
+									<a class="page-link" href="#" aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+										<span class="sr-only">Previous</span>
+									</a>
+								</li>
+								<li class="page-item"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item active">
+									<a class="page-link" href="#">2 </a>
+								</li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item">
+									<a class="page-link" href="#" aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+										<span class="sr-only">Next</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+
+					<div class="save-btn"><button class="btn btn-primary">Save Order</button></div>
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<script src="./index.js"></script>
+	<script>
+		var table = $('.table tbody tr').each(function () {
+			var id = $(this).find("td").eq(0).html();
+			console.log(id);
+		})
+	</script>
+</body>
+
+</html>
