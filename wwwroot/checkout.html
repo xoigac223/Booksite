@@ -312,6 +312,7 @@
         <!-- Start Checkout Area -->
         <section class="wn__checkout__area section-padding--lg bg__white">
         	<div class="container">
+                <!-- ko ifnot: isLogin -->
         		<div class="row">
         			<div class="col-lg-12">
         				<div class="wn_checkout_wrap">
@@ -320,18 +321,22 @@
         						<a class="showlogin" href="#">Click here to login</a>
         					</div>
         					<div class="checkout_login">
-        						<form class="wn__checkout__form" action="#">
+        						<form class="wn__checkout__form" id="login_form">
         							<p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
 
         							<div class="input__box">
-        								<label>Username or email <span>*</span></label>
-        								<input type="text">
+        								<label>Username  <span>*</span></label>
+        								<input type="text" id="uname_login" name="username">
         							</div>
 
         							<div class="input__box">
         								<label>password <span>*</span></label>
-        								<input type="password">
+        								<input type="password" id="pwd_login" name="password">
         							</div>
+                                    <!-- ko if: msgLogin -->
+                                    <div class="alert alert-danger" role="alert" data-bind="text: msgLogin">
+                                    </div>
+                                    <!-- /ko -->
         							<div class="form__btn">
         								<button>Login</button>
         								<label class="label-for-checkbox">
@@ -342,168 +347,39 @@
         							</div>
         						</form>
         					</div>
-        					<div class="checkout_info">
-        						<span>Have a coupon? </span>
-        						<a class="showcoupon" href="#">Click here to enter your code</a>
-        					</div>
-        					<div class="checkout_coupon">
-        						<form action="#">
-        							<div class="form__coupon">
-        								<input type="text" placeholder="Coupon code">
-        								<button>Apply coupon</button>
-        							</div>
-        						</form>
-        					</div>
         				</div>
         			</div>
         		</div>
+                <!-- /ko -->
         		<div class="row">
-        			<div class="col-lg-6 col-12">
-        				<div class="customer_details">
-        					<h3>Billing details</h3>
-        					<div class="customar__field">
-        						<div class="margin_between">
-	        						<div class="input_box space_between">
-	        							<label>First name <span>*</span></label>
-	        							<input type="text">
-	        						</div>
-	        						<div class="input_box space_between">
-	        							<label>last name <span>*</span></label>
-	        							<input type="text">
-	        						</div>
-        						</div>
-        						<div class="input_box">
-        							<label>Company name <span>*</span></label>
-        							<input type="text">
-        						</div>
-        						<div class="input_box">
-        							<label>Country<span>*</span></label>
-        							<select class="select__option">
-										<option>Select a country…</option>
-										<option>Afghanistan</option>
-										<option>American Samoa</option>
-										<option>Anguilla</option>
-										<option>American Samoa</option>
-										<option>Antarctica</option>
-										<option>Antigua and Barbuda</option>
-        							</select>
-        						</div>
-        						<div class="input_box">
-        							<label>Address <span>*</span></label>
-        							<input type="text" placeholder="Street address">
-        						</div>
-        						<div class="input_box">
-        							<input type="text" placeholder="Apartment, suite, unit etc. (optional)">
-        						</div>
-        						<div class="input_box">
-        							<label>District<span>*</span></label>
-        							<select class="select__option">
-										<option>Select a country…</option>
-										<option>Afghanistan</option>
-										<option>American Samoa</option>
-										<option>Anguilla</option>
-										<option>American Samoa</option>
-										<option>Antarctica</option>
-										<option>Antigua and Barbuda</option>
-        							</select>
-        						</div>
-								<div class="input_box">
-									<label>Postcode / ZIP <span>*</span></label>
-									<input type="text">
-								</div>
-								<div class="margin_between">
-									<div class="input_box space_between">
-										<label>Phone <span>*</span></label>
-										<input type="text">
-									</div>
-
-									<div class="input_box space_between">
-										<label>Email address <span>*</span></label>
-										<input type="email">
-									</div>
-								</div>
-        					</div>
-        					<div class="create__account">
-        						<div class="wn__accountbox">
-	        						<input class="input-checkbox" name="createaccount" value="1" type="checkbox">
-	        						<span>Create an account ?</span>
-        						</div>
-        						<div class="account__field">
-        							<form action="#">
-        								<label>Account password <span>*</span></label>
-        								<input type="text" placeholder="password">
-        							</form>
-        						</div>
-        					</div>
-        				</div>
-        				<div class="customer_details mt--20">
-        					<div class="differt__address">
-	        					<input name="ship_to_different_address" value="1" type="checkbox">
-	        					<span>Ship to a different address ?</span>
-        					</div>
-        					<div class="customar__field differt__form mt--40">
-        						<div class="margin_between">
-	        						<div class="input_box space_between">
-	        							<label>First name <span>*</span></label>
-	        							<input type="text">
-	        						</div>
-	        						<div class="input_box space_between">
-	        							<label>last name <span>*</span></label>
-	        							<input type="text">
-	        						</div>
-        						</div>
-        						<div class="input_box">
-        							<label>Company name <span>*</span></label>
-        							<input type="text">
-        						</div>
-        						<div class="input_box">
-        							<label>Country<span>*</span></label>
-        							<select class="select__option">
-										<option>Select a country…</option>
-										<option>Afghanistan</option>
-										<option>American Samoa</option>
-										<option>Anguilla</option>
-										<option>American Samoa</option>
-										<option>Antarctica</option>
-										<option>Antigua and Barbuda</option>
-        							</select>
-        						</div>
-        						<div class="input_box">
-        							<label>Address <span>*</span></label>
-        							<input type="text" placeholder="Street address">
-        						</div>
-        						<div class="input_box">
-        							<input type="text" placeholder="Apartment, suite, unit etc. (optional)">
-        						</div>
-        						<div class="input_box">
-        							<label>District<span>*</span></label>
-        							<select class="select__option"> 
-										<option>Select a country…</option>
-										<option>Afghanistan</option>
-										<option>American Samoa</option>
-										<option>Anguilla</option>
-										<option>American Samoa</option>
-										<option>Antarctica</option>
-										<option>Antigua and Barbuda</option>
-        							</select>
-        						</div>
-								<div class="input_box">
-									<label>Postcode / ZIP <span>*</span></label>
-									<input type="text">
-								</div>
-								<div class="margin_between">
-									<div class="input_box space_between">
-										<label>Phone <span>*</span></label>
-										<input type="text">
-									</div>
-									<div class="input_box space_between">
-										<label>Email address <span>*</span></label>
-										<input type="email">
-									</div>
-								</div>
-        					</div>
-        				</div>
-        			</div>
+                    <div class="col-lg-6 col-12">
+                        <div class="my__account__wrapper">
+                            <h3 class="account__title">Information</h3>
+                            <form id="update_form">
+                                <div class="account__form">
+                                    <div class="input__box">
+                                        <label>Fullname <span>*</span></label>
+                                        <input type="text" name="fullname" id="fullname_update" data-bind="value: fullname">
+                                    </div>
+                                    <div class="input__box">
+                                        <label>Address <span>*</span></label>
+                                        <input type="text" name="address" id="address_update" data-bind="value: address">
+                                    </div>
+                                    <div class="input__box">
+                                        <label>Phone <span>*</span></label>
+                                        <input type="text" name="phone" id="phone_update" data-bind="value: phone">
+                                    </div>
+                                    <div class="input__box">
+                                        <label>Email <span>*</span></label>
+                                        <input type="text" name="email" id="email_update" data-bind="value: email">
+                                    </div>
+                                    <div class="form__btn">
+                                        <button>Place Order</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
         			<div class="col-lg-6 col-12 md-mt-40 sm-mt-40">
         				<div class="wn__order__box">
         					<h3 class="onder__title">Your order</h3>
@@ -649,6 +525,10 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/active.js"></script>
+    <script src="lib/knockout/knockout-min.js"></script>
+    <script src="lib/jquery-validation/dist/jquery.validate.min.js"></script>
+
+    <script src="js/my-account.js"></script>
 	
 </body>
 </html>

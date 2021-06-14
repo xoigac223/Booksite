@@ -9,7 +9,7 @@ namespace BookShop.Models
     {
         public User()
         {
-            Bills = new HashSet<Bill>();
+            Orders = new HashSet<Order>();
         }
 
         public string Username { get; set; }
@@ -18,6 +18,6 @@ namespace BookShop.Models
         public string Phone { get; set; }
         public string Email { get; set; }
 
-        public virtual ICollection<Bill> Bills { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

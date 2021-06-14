@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using BookShop.Models;
 using BookShop.Service;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 
 namespace BookShop.Controllers
 {

@@ -11,47 +11,47 @@ namespace BookShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BillDetailController : ControllerBase
+    public class OrderDetailController : ControllerBase
     {
         private readonly BookshopContext _context;
 
-        public BillDetailController(BookshopContext context)
+        public OrderDetailController(BookshopContext context)
         {
             _context = context;
         }
 
-        // GET: api/BillDetail
+        // GET: api/OrderDetail
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BillDetail>>> GetBillDetails()
+        public async Task<ActionResult<IEnumerable<OrderDetail>>> GetOrderDetails()
         {
-            return await _context.BillDetails.ToListAsync();
+            return await _context.OrderDetails.ToListAsync();
         }
 
-        // GET: api/BillDetail/5
+        // GET: api/OrderDetail/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<BillDetail>> GetBillDetail(int id)
+        public async Task<ActionResult<OrderDetail>> GetOrderDetail(int id)
         {
-            var billDetail = await _context.BillDetails.FindAsync(id);
+            var orderDetail = await _context.OrderDetails.FindAsync(id);
 
-            if (billDetail == null)
+            if (orderDetail == null)
             {
                 return NotFound();
             }
 
-            return billDetail;
+            return orderDetail;
         }
 
-        // PUT: api/BillDetail/5
+        // PUT: api/OrderDetail/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBillDetail(int id, BillDetail billDetail)
+        public async Task<IActionResult> PutOrderDetail(int id, OrderDetail orderDetail)
         {
-            if (id != billDetail.BillId)
+            if (id != orderDetail.OrderId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(billDetail).State = EntityState.Modified;
+            _context.Entry(orderDetail).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace BookShop.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BillDetailExists(id))
+                if (!OrderDetailExists(id))
                 {
                     return NotFound();
                 }
@@ -72,19 +72,19 @@ namespace BookShop.Controllers
             return NoContent();
         }
 
-        // POST: api/BillDetail
+        // POST: api/OrderDetail
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<BillDetail>> PostBillDetail(BillDetail billDetail)
+        public async Task<ActionResult<OrderDetail>> PostOrderDetail(OrderDetail orderDetail)
         {
-            _context.BillDetails.Add(billDetail);
+            _context.OrderDetails.Add(orderDetail);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (BillDetailExists(billDetail.BillId))
+                if (OrderDetailExists(orderDetail.OrderId))
                 {
                     return Conflict();
                 }
@@ -94,28 +94,28 @@ namespace BookShop.Controllers
                 }
             }
 
-            return CreatedAtAction("GetBillDetail", new { id = billDetail.BillId }, billDetail);
+            return CreatedAtAction("GetOrderDetail", new { id = orderDetail.OrderId }, orderDetail);
         }
 
-        // DELETE: api/BillDetail/5
+        // DELETE: api/OrderDetail/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBillDetail(int id)
+        public async Task<IActionResult> DeleteOrderDetail(int id)
         {
-            var billDetail = await _context.BillDetails.FindAsync(id);
-            if (billDetail == null)
+            var orderDetail = await _context.OrderDetails.FindAsync(id);
+            if (orderDetail == null)
             {
                 return NotFound();
             }
 
-            _context.BillDetails.Remove(billDetail);
+            _context.OrderDetails.Remove(orderDetail);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool BillDetailExists(int id)
+        private bool OrderDetailExists(int id)
         {
-            return _context.BillDetails.Any(e => e.BillId == id);
+            return _context.OrderDetails.Any(e => e.OrderId == id);
         }
     }
 }

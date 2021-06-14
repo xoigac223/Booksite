@@ -222,62 +222,14 @@
 									<div class="content-inner">
 										<div class="switcher-currency">
 											<strong class="label switcher-label">
-												<span>Currency</span>
-											</strong>
-											<div class="switcher-options">
-												<div class="switcher-currency-trigger">
-													<span class="currency-trigger">USD - US Dollar</span>
-													<ul class="switcher-dropdown">
-														<li>GBP - British Pound Sterling</li>
-														<li>EUR - Euro</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="switcher-currency">
-											<strong class="label switcher-label">
-												<span>Language</span>
-											</strong>
-											<div class="switcher-options">
-												<div class="switcher-currency-trigger">
-													<span class="currency-trigger">English01</span>
-													<ul class="switcher-dropdown">
-														<li>English02</li>
-														<li>English03</li>
-														<li>English04</li>
-														<li>English05</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="switcher-currency">
-											<strong class="label switcher-label">
-												<span>Select Store</span>
-											</strong>
-											<div class="switcher-options">
-												<div class="switcher-currency-trigger">
-													<span class="currency-trigger">Fashion Store</span>
-													<ul class="switcher-dropdown">
-														<li>Furniture</li>
-														<li>Shoes</li>
-														<li>Speaker Store</li>
-														<li>Furniture</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="switcher-currency">
-											<strong class="label switcher-label">
 												<span>My Account</span>
 											</strong>
 											<div class="switcher-options">
 												<div class="switcher-currency-trigger">
 													<div class="setting__menu">
-														<span><a href="#">Compare Product</a></span>
 														<span><a href="#">My Account</a></span>
-														<span><a href="#">My Wishlist</a></span>
 														<span><a href="#">Sign In</a></span>
-														<span><a href="#">Create An Account</a></span>
+														<span><a href="#" onclick="logout()">Log out</a></span>
 													</div>
 												</div>
 											</div>
@@ -363,15 +315,15 @@
 					<div class="col-lg-6 col-12">
 						<div class="my__account__wrapper">
 							<h3 class="account__title">Login</h3>
-							<form id="login_form">
+							<form id="login_form" class="validatedForm">
 								<div class="account__form">
 									<div class="input__box">
 										<label>Username <span>*</span></label>
-										<input type="text" id="uname_login">
+										<input type="text" id="uname_login" name="username">
 									</div>
 									<div class="input__box">
 										<label>Password<span>*</span></label>
-										<input type="password" id="pwd_login">
+										<input type="password" id="pwd_login" name="password">
 									</div>
 									<!-- ko if: msgLogin -->
 									<div class="alert alert-danger" role="alert" data-bind="text: msgLogin">
@@ -392,19 +344,19 @@
 					<div class="col-lg-6 col-12">
 						<div class="my__account__wrapper">
 							<h3 class="account__title">Register</h3>
-							<form id="form_register">
+							<form id="form_register" class="validatedForm">
 								<div class="account__form">
 									<div class="input__box">
 										<label>Username <span>*</span></label>
-										<input type="text" id="uname_register">
+										<input type="text" id="uname_register" name="username">
 									</div>
 									<div class="input__box">
 										<label>Password<span>*</span></label>
-										<input type="password" id="pwd_register">
+										<input type="password" id="pwd_register" name="password">
 									</div>
 									<div class="input__box">
 										<label>Confirm Password<span>*</span></label>
-										<input type="password">
+										<input type="password" id="re-password" name="re-password">
 									</div>
 									<!-- ko if: msg -->
 									<div class="alert alert-danger" role="alert" data-bind="text: msg">
@@ -420,7 +372,7 @@
 				</div>
 				<!-- /ko -->
 				<!-- ko if: isLogin -->
-				<div class="row">
+				<div class="row" data-bind="template: {afterRender: initApp}">
 					<div class="col-lg-6 col-12">
 						<div class="my__account__wrapper">
 							<h3 class="account__title">Information</h3>
@@ -520,6 +472,7 @@
 	<script src="js/plugins.js"></script>
 	<script src="js/active.js"></script>
 	<script src="lib/knockout/knockout-min.js"></script>
+	<script src="lib/jquery-validation/dist/jquery.validate.min.js"></script>
 	
 	<script src="js/my-account.js"></script>
 			

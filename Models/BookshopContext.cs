@@ -20,8 +20,8 @@ namespace BookShop.Models
         }
 
         public virtual DbSet<Admin> Admins { get; set; }
-        public virtual DbSet<Bill> Bills { get; set; }
-        public virtual DbSet<BillDetail> BillDetails { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<CategoryBook> CategoryBooks { get; set; }
@@ -48,61 +48,6 @@ namespace BookShop.Models
                     .IsRequired()
                     .HasMaxLength(100)
                     .HasColumnName("password");
-            });
-
-            modelBuilder.Entity<Bill>(entity =>
-            {
-                entity.ToTable("bill");
-
-                entity.HasIndex(e => e.Username, "username");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Address)
-                    .IsRequired()
-                    .HasMaxLength(200)
-                    .HasColumnName("address");
-
-                entity.Property(e => e.DateBill).HasColumnName("date_bill");
-
-                entity.Property(e => e.Username)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .HasColumnName("username");
-
-                entity.HasOne(d => d.UsernameNavigation)
-                    .WithMany(p => p.Bills)
-                    .HasForeignKey(d => d.Username)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("bill_ibfk_1");
-            });
-
-            modelBuilder.Entity<BillDetail>(entity =>
-            {
-                entity.HasKey(e => new { e.BillId, e.BookId })
-                    .HasName("PRIMARY");
-
-                entity.ToTable("bill_detail");
-
-                entity.HasIndex(e => e.BookId, "book_id");
-
-                entity.Property(e => e.BillId).HasColumnName("bill_id");
-
-                entity.Property(e => e.BookId).HasColumnName("book_id");
-
-                entity.Property(e => e.Quantity).HasColumnName("quantity");
-
-                entity.HasOne(d => d.Bill)
-                    .WithMany(p => p.BillDetails)
-                    .HasForeignKey(d => d.BillId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("bill_detail_ibfk_1");
-
-                entity.HasOne(d => d.Book)
-                    .WithMany(p => p.BillDetails)
-                    .HasForeignKey(d => d.BookId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("bill_detail_ibfk_2");
             });
 
             modelBuilder.Entity<Book>(entity =>
@@ -167,7 +112,7 @@ namespace BookShop.Models
             modelBuilder.Entity<CategoryBook>(entity =>
             {
                 entity.HasKey(e => new { e.Category, e.Book })
-                    .HasName("PRIMARY");    
+                    .HasName("PRIMARY");
 
                 entity.ToTable("category_book");
 
@@ -190,18 +135,74 @@ namespace BookShop.Models
                     .HasConstraintName("category_book_ibfk_1");
             });
 
-            modelBuilder.Entity<EfmigrationsHistory>(entity =>
+            modelBuilder.Entity<Order>(entity =>
             {
-                entity.HasKey(e => e.MigrationId)
+                entity.ToTable("order");
+
+                entity.HasIndex(e => e.Username, "username");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Address)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .HasColumnName("address");
+
+                entity.Property(e => e.DateBill).HasColumnName("date_bill");
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("email");
+
+                entity.Property(e => e.Fullname)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnName("fullname");
+
+                entity.Property(e => e.Phone)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .HasColumnName("phone");
+
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnName("username");
+
+                entity.HasOne(d => d.UsernameNavigation)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.Username)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("order_ibfk_1");
+            });
+
+            modelBuilder.Entity<OrderDetail>(entity =>
+            {
+                entity.HasKey(e => new { e.OrderId, e.BookId })
                     .HasName("PRIMARY");
 
-                entity.ToTable("__EFMigrationsHistory");
+                entity.ToTable("order_detail");
 
-                entity.Property(e => e.MigrationId).HasMaxLength(150);
+                entity.HasIndex(e => e.BookId, "book_id");
 
-                entity.Property(e => e.ProductVersion)
-                    .IsRequired()
-                    .HasMaxLength(32);
+                entity.Property(e => e.OrderId).HasColumnName("order_id");
+
+                entity.Property(e => e.BookId).HasColumnName("book_id");
+
+                entity.Property(e => e.Quantity).HasColumnName("quantity");
+
+                entity.HasOne(d => d.Book)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.BookId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("order_detail_ibfk_2");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.OrderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("order_detail_ibfk_1");
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -232,6 +233,20 @@ namespace BookShop.Models
                     .HasColumnName("phone");
             });
 
+            modelBuilder.Entity<EfmigrationsHistory>(entity =>
+            {
+                entity.HasKey(e => e.MigrationId)
+                    .HasName("PRIMARY");
+
+                entity.ToTable("__EFMigrationsHistory");
+
+                entity.Property(e => e.MigrationId).HasMaxLength(150);
+
+                entity.Property(e => e.ProductVersion)
+                    .IsRequired()
+                    .HasMaxLength(32);
+            });
+            
             base.OnModelCreating(modelBuilder);
         }
 

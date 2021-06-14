@@ -5,19 +5,22 @@ using System.Collections.Generic;
 
 namespace BookShop.Models
 {
-    public partial class Bill
+    public partial class Order
     {
-        public Bill()
+        public Order()
         {
-            BillDetails = new HashSet<BillDetail>();
+            OrderDetails = new HashSet<OrderDetail>();
         }
 
         public int Id { get; set; }
         public string Username { get; set; }
         public DateTime DateBill { get; set; }
+        public string Fullname { get; set; }
         public string Address { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
 
         public virtual User UsernameNavigation { get; set; }
-        public virtual ICollection<BillDetail> BillDetails { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

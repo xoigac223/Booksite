@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BookShop.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookShop.Controllers
 {
@@ -43,6 +44,7 @@ namespace BookShop.Controllers
 
         // PUT: api/User/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(string id, User user)
         {
@@ -56,6 +58,7 @@ namespace BookShop.Controllers
             try
             {
                 await _context.SaveChangesAsync();
+                HttpContext.Session.SetString("user", Newtonsoft.Json.JsonConvert.SerializeObject(user));
             }
             catch (DbUpdateConcurrencyException)
             {

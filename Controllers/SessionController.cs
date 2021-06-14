@@ -13,5 +13,12 @@ namespace BookShop.Controllers
             var sessionData = HttpContext.Session.GetString("user");
             return Ok(sessionData);
         }
+        
+        [HttpGet("logout")]
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Remove("user");
+            return Ok("log out successfully");
+        }
     }
 }

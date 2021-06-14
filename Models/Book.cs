@@ -9,8 +9,8 @@ namespace BookShop.Models
     {
         public Book()
         {
-            BillDetails = new HashSet<BillDetail>();
             CategoryBooks = new HashSet<CategoryBook>();
+            OrderDetails = new HashSet<OrderDetail>();
         }
 
         public int Id { get; set; }
@@ -25,8 +25,7 @@ namespace BookShop.Models
         public string Details { get; set; }
         public string ImageUrl { get; set; }
 
-        public virtual ICollection<BillDetail> BillDetails { get; set; }
         public virtual ICollection<CategoryBook> CategoryBooks { get; set; }
-        
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

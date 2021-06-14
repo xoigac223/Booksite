@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace BookShop.Models
 {
-    public partial class BillDetail
+    public partial class OrderDetail
     {
-        public int BillId { get; set; }
+        public int OrderId { get; set; }
         public int BookId { get; set; }
         public int Quantity { get; set; }
 
-        public virtual Bill Bill { get; set; }
         public virtual Book Book { get; set; }
+        public virtual Order Order { get; set; }
     }
 }
