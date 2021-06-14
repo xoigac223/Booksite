@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<title>Admin</title>
+</head>
+
+<body>
+	<div class="fluid-container admin-container">
+		<div class="row admin-layout">
+			<div class="col-lg-2 sidebar-wrapper">
+				<div class="sidebar">
+					<div class="sidebar-header">
+						<i class="fas fa-book"></i>
+						Book Admin
+					</div>
+					<hr />
+					<div class="item">
+						<a href="index.html" class="item_link">
+							<i class="fas fa-home"></i>
+							Home
+						</a>
+					</div>
+					<div class="item">
+						<a href="order.html" class="item_link">
+							<i class="fas fa-gift"></i>
+							Order
+						</a>
+					</div>
+					<div class="item">
+						<a href="book.html" class="item_link">
+							<i class="fas fa-book"></i>
+							Book
+						</a>
+					</div>
+					<div class="item">
+						<a href="#" class="item_link">Home</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-10">
+
+				<!-- header nav -->
+				<div class="row nav">
+					<div class="nav-icon-list">
+						<i class="fas fa-list"></i>
+					</div>
+				</div>
+				<!-- content -->
+
+				<div class="row content">
+					<div class="col">
+						<!-- Quantity -->
+						<div class="row quantity">
+
+							<div class="col-lg-3 quantity-item">
+								<div class="quantity-item_child">
+									<div class="quanty-item_icon"> <i class="fas fa-book"></i></div>
+									<div class="book-title">
+										<div>Book</div>
+										<div class="quantity-book">
+											2000000
+										</div>
+									</div>
+									<hr style="border: 0.5px solid #eaeaea; margin-top: 40px;margin-bottom: 0;" />
+									<div class="more-information">
+										<a href="#"><i class="fas fa-info-circle"></i> More Information</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-3 quantity-item">
+								<div class="quantity-item_child">
+									<div class="quanty-item_icon category-icon "><i class="fas fa-th-list"></i></div>
+									<div class="book-title">
+										<div>Category</div>
+										<div class="quantity-book">
+											50
+										</div>
+									</div>
+									<hr style="border: 0.5px solid #eaeaea; margin-top: 40px;margin-bottom: 0;" />
+									<div class="more-information">
+										<a href="#"><i class="fas fa-info-circle"></i> More Information</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-3 quantity-item">
+								<div class="quantity-item_child">
+									<div class="quanty-item_icon order-icon"><i class="fas fa-gift"></i></div>
+									<div class="book-title">
+										<div>Order</div>
+										<div class="quantity-book">
+											5000
+										</div>
+									</div>
+									<hr style="border: 0.5px solid #eaeaea; margin-top: 40px;margin-bottom: 0;" />
+									<div class="more-information">
+										<a href="#"><i class="fas fa-info-circle"></i> More Information</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-3 quantity-item">
+								<div class="quantity-item_child ">
+									<div class="quanty-item_icon user-icon"> <i class="fas fa-users"></i></div>
+									<div class="book-title">
+										<div>User</div>
+										<div class="quantity-book">
+											12000
+										</div>
+									</div>
+									<hr style="border: 0.5px solid #eaeaea; margin-top: 40px;margin-bottom: 0;" />
+									<div class="more-information">
+										<a href="#"><i class="fas fa-info-circle"></i> More Information</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Total and best seller -->
+						<div class="row sell-total">
+
+							<div class="col-lg-6 sell-item">
+								<div class="sell-item-detail">
+									<div class="sell-title">Top 5 Best sellers</div>
+
+									<div class="top-seller-item start">
+										<div class="book-name">Conan </div>
+										<div class="progress">
+											<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%"
+												aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+										<div class="customer">140k </div>
+									</div>
+
+									<div class="top-seller-item">
+										<div class="book-name">Conan </div>
+										<div class="progress">
+											<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%"
+												aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+										<div class="customer">140k </div>
+									</div>
+
+									<div class="top-seller-item">
+										<div class="book-name">Conan </div>
+										<div class="progress">
+											<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%"
+												aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+										<div class="customer">140k </div>
+									</div>
+
+									<div class="top-seller-item">
+										<div class="book-name">Conan </div>
+										<div class="progress">
+											<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%"
+												aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+										<div class="customer">140k </div>
+									</div>
+
+									<div class="top-seller-item">
+										<div class="book-name">Conan </div>
+										<div class="progress">
+											<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%"
+												aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+										<div class="customer">140k </div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-6 total-item">
+								<div class="total-item-detail">
+									<div class="total-title">
+										Total Seller About 5 Mouth
+									</div>
+									<div class="chart">
+										<div>
+											<canvas id="myChart"></canvas>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script src="./index.js"></script>
+	<script>
+		// === include 'setup' then 'config' above ===
+		const labels = [
+			'January',
+			'February',
+			'March',
+			'April',
+			'May',
+			'June',
+
+		];
+		const data = {
+			labels: labels,
+			datasets: [{
+				label: 'Total sales',
+				backgroundColor: 'rgb(255, 99, 132)',
+				borderColor: 'rgb(255, 99, 132)',
+				data: [0, 15, 5, 2, 20, 30, 45],
+			}]
+		};
+		const config = {
+			type: 'line',
+			data,
+			options: {}
+		};
+
+		var myChart = new Chart(
+			document.getElementById('myChart'),
+			config
+		);
+	</script>
+</body>
+
+</html>
