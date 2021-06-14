@@ -3,4 +3,5 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=B0719BCD_002DEC40_002DFF4D_002D8063_002DFDEECCE107F9_002Fd_003AModels_002Ff_003ABookshopContext_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/SweaWarningsMode/@EntryValue">ShowAndRun</s:String>
 	
+	
 	</wpf:ResourceDictionary>

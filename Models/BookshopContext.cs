@@ -1,4 +1,6 @@
 ﻿using System;
+using BookShop.Authentication;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BookShop.Models
 {
-    public partial class BookshopContext : DbContext
+    public partial class BookshopContext : IdentityDbContext<ApplicationUser>
     {
         public BookshopContext()
         {
@@ -221,17 +223,16 @@ namespace BookShop.Models
                     .HasMaxLength(50)
                     .HasColumnName("email");
 
-                entity.Property(e => e.Password)
-                    .IsRequired()
+                entity.Property(e => e.Fullname)
                     .HasMaxLength(100)
-                    .HasColumnName("password");
+                    .HasColumnName("fullname");
 
                 entity.Property(e => e.Phone)
                     .HasMaxLength(20)
                     .HasColumnName("phone");
             });
 
-            OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
