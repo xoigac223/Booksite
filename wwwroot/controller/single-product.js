@@ -1,4 +1,3 @@
-
 $.urlParam = function (name) {
   var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
   if (results == null) {
@@ -7,6 +6,18 @@ $.urlParam = function (name) {
   return decodeURI(results[1]) || 0;
 }
 const id = $.urlParam('id');
+
+let listShopping = [];
+
+function getListShopping() {
+  if (localStorage.getItem('cart') === null) {
+    localStorage.setItem('cart', JSON.stringify([]));
+  } else {
+    listShopping = JSON.parse(localStorage.getItem('cart'));
+  }
+}
+
+getListShopping();
 
 function renderProduct(res) {
   const product = `<div class="row">
@@ -59,15 +70,27 @@ function renderProduct(res) {
 function handlerAddToCart(res) {
   const amount = parseInt($('.box-tocart__qty').val());
   let product = res;
-  if (sessionStorage.getItem(product.id) === null) {
-    product.amount = amount;
-    sessionStorage.setItem(product.id, JSON.stringify(product));
+  if(listShopping.find(item => item.id === product.id) === undefined) {
+    product.amount = parseInt(amount);
+    listShopping.push(product);
+    localStorage.setItem('cart', JSON.stringify(listShopping));
   } else {
-    product = JSON.parse(sessionStorage.getItem(product.id));
+    product = listShopping.find(item => item.id === product.id);
+    let index = listShopping.indexOf(product);
     product.amount = parseInt(product.amount);
-    product.amount += amount;
-    sessionStorage.setItem(product.id, JSON.stringify(product));
+    product.amount += parseInt(amount);
+    listShopping[index] = product;
+    localStorage.setItem('cart', JSON.stringify(listShopping));
   }
+  // if (sessionStorage.getItem(product.id) === null) {
+  //   product.amount = amount;
+  //   sessionStorage.setItem(product.id, JSON.stringify(product));
+  // } else {
+  //   product = JSON.parse(sessionStorage.getItem(product.id));
+  //   product.amount = parseInt(product.amount);
+  //   product.amount += amount;
+  //   sessionStorage.setItem(product.id, JSON.stringify(product));
+  // }
   alert('Add item success!');
   window.location.href = '/cart.html';
 }

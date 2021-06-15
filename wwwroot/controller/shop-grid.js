@@ -1,5 +1,17 @@
 let listProduct;
 
+let listShopping = [];
+
+function getListShopping() {
+  if (localStorage.getItem('cart') === null) {
+    localStorage.setItem('cart', JSON.stringify([]));
+  } else {
+    listShopping = JSON.parse(localStorage.getItem('cart'));
+  }
+}
+
+getListShopping();
+
 $.urlParam = function (name) {
   var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
   if (results == null) {
@@ -80,13 +92,16 @@ function handlerProduct(data, i) {
 function handlerAddCart(e) {
   const index = e.target.classList[0].split('-')[1];
   let product = listProduct[index].id === undefined ? listProduct[index].bookNavigation : listProduct[index];
-  if (sessionStorage.getItem(product.id) === null) {
+  if(listShopping.find(item => item.id === product.id) === undefined) {
     product.amount = 1;
-    sessionStorage.setItem(product.id, JSON.stringify(product));
+    listShopping.push(product);
+    localStorage.setItem('cart', JSON.stringify(listShopping));
   } else {
-    product = JSON.parse(sessionStorage.getItem(product.id));
+    product = listShopping.find(item => item.id === product.id);
+    let index = listShopping.indexOf(product);
     product.amount++;
-    sessionStorage.setItem(product.id, JSON.stringify(product));
+    listShopping[index] = product;
+    localStorage.setItem('cart', JSON.stringify(listShopping));
   }
   alert('Add item success!');
 }

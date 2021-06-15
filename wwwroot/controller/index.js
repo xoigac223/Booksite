@@ -1,4 +1,15 @@
 let productList;
+let listShopping = [];
+
+function getListShopping() {
+  if (localStorage.getItem('cart') === null) {
+    localStorage.setItem('cart', JSON.stringify([]));
+  } else {
+    listShopping = JSON.parse(localStorage.getItem('cart'));
+  }
+}
+
+getListShopping();
 
 function handlerQuickview(e) {
   $('.modal-body').empty();
@@ -57,13 +68,17 @@ function handlerQuickview(e) {
   $('.modal-body').append(modalProduct);
   $('.addtocart-btn .addtocart-btn__link').click((e) => {
     e.preventDefault();
-    if (sessionStorage.getItem(product.id) === null) {
+
+    if(listShopping.find(item => item.id === product.id) === undefined) {
       product.amount = 1;
-      sessionStorage.setItem(product.id, JSON.stringify(product));
+      listShopping.push(product);
+      localStorage.setItem('cart', JSON.stringify(listShopping));
     } else {
-      product = JSON.parse(sessionStorage.getItem(product.id));
+      product = listShopping.find(item => item.id === product.id);
+      let index = listShopping.indexOf(product);
       product.amount++;
-      sessionStorage.setItem(product.id, JSON.stringify(product));
+      listShopping[index] = product;
+      localStorage.setItem('cart', JSON.stringify(listShopping));
     }
     alert('Add success!');
     window.location.reload();
@@ -110,7 +125,7 @@ function setListProduct(product) {
     </div>
   </div>`
   $(`${product.id % 2 === 0 ? '#product__indicator--4__product-list' : '#product__indicator--5__product-list'}`).append(productItem);
-  
+
 }
 
 function slideShow(className) {
@@ -147,14 +162,12 @@ function slideShow(className) {
 $(document).ready(function () {
   $.get('https://localhost:5001/api/Book', (res) => {
     productList = res;
-    console.log(res);
     for (let i = 0; i < productList.length; i++) {
       setListProduct(productList[i])
     }
     slideShow('.product__indicator--4');
     slideShow('.product__indicator--5');
     $('.add_to_links .quickview').click((e) => {
-      // console.log('hello');
       handlerQuickview(e);
     });
   });
