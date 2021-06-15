@@ -59,7 +59,7 @@ function renderProduct(res) {
 function handlerAddToCart(res) {
   const amount = parseInt($('.box-tocart__qty').val());
   let product = res;
-  if(sessionStorage.getItem(product.id) === null) {
+  if (sessionStorage.getItem(product.id) === null) {
     product.amount = amount;
     sessionStorage.setItem(product.id, JSON.stringify(product));
   } else {
@@ -72,12 +72,84 @@ function handlerAddToCart(res) {
   window.location.href = '/cart.html';
 }
 
-$(document).ready(function () {
-  $.get(`https://localhost:5001/api/Book/${id}`, (res) => {
-    renderProduct(res)
+function handlerRelatedProduct(item) {
+  const product = `<div class="col-lg-4 col-md-4 col-sm-6 col-12">
+  <div class="product">
+    <div class="product__thumb">
+      <a class="first__img" href="single-product.html?id=${item.id}"><img src="images/product/9.jpg"
+          alt="product image"></a>
+      <a class="second__img animation1" href="single-product.html?id=${item.id}"><img src="images/product/8.jpg"
+          alt="product image"></a>
+      <div class="new__box">
+        <span class="new-label">Product</span>
+      </div>
+      <ul class="prize position__right__bottom d-flex">
+        <li>${item.price} VND</li>
+      </ul>
+    </div>
+    <div class="product__content">
+      <h4><a href="single-product.html?id=${item.id}">${item.name}</a></h4>
+      <ul class="rating d-flex">
+        <li class="on"><i class="fa fa-star-o"></i></li>
+        <li class="on"><i class="fa fa-star-o"></i></li>
+        <li class="on"><i class="fa fa-star-o"></i></li>
+        <li><i class="fa fa-star-o"></i></li>
+        <li><i class="fa fa-star-o"></i></li>
+      </ul>
+    </div>
+  </div>
+  </div>`
+  $('.productcategory__slide--2').append(product);
+}
 
-    $('.addtocart__actions .tocart').click(() => {
-      handlerAddToCart(res);
-    })
+
+function getBook() {
+  return new Promise(resolve => {
+    $.get(`https://localhost:5001/api/Book/${id}`, (res) => {
+      renderProduct(res);
+      $('.addtocart__actions .tocart').click(() => {
+        handlerAddToCart(res);
+      });
+      resolve(res.categories[0].id);
+    });
   })
+}
+
+async function getRelate() {
+  const category = await getBook();
+  $.get(`https://localhost:5001/api/Search?Filters=category%3D%3D${category}&Page=1&PageSize=6`, (response) => {
+    console.log(response);
+    response.forEach((item) => {
+      handlerRelatedProduct(item.bookNavigation);
+    })
+    $('.productcategory__slide--2').owlCarousel({
+      loop: true,
+      margin: 0,
+      nav: true,
+      autoplay: false,
+      autoplayTimeout: 10000,
+      items: 3,
+      navText: ['<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>'],
+      dots: false,
+      lazyLoad: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        576: {
+          items: 2
+        },
+        768: {
+          items: 3
+        },
+        1920: {
+          items: 3
+        }
+      }
+    });
+  });
+}
+
+$(document).ready(function () {
+  getRelate();
 })

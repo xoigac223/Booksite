@@ -59,7 +59,7 @@
 									<div class="megamenu mega03">
 										<ul class="item item03">
 											<li class="title">Shop Layout</li>
-											<li><a href="shop-grid.html">Shop Grid</a></li>
+											<li><a href="shop-grid.html?category=0">Shop Grid</a></li>
 										</ul>
 										<ul class="item item03">
 											<li class="title">Shop Page</li>
@@ -80,13 +80,8 @@
 								</li>
 								<li class="drop"><a href="shop-grid.html">Books</a>
 									<div class="megamenu mega03">
-										<ul class="item item03">
+										<ul class="megamenu__categories item item03">
 											<li class="title">Categories</li>
-											<li><a href="shop-grid.html">Biography </a></li>
-											<li><a href="shop-grid.html">Business </a></li>
-											<li><a href="shop-grid.html">Cookbooks </a></li>
-											<li><a href="shop-grid.html">Health & Fitness </a></li>
-											<li><a href="shop-grid.html">History </a></li>
 										</ul>
 										<ul class="item item03">
 											<li class="title">Customer Favourite</li>
@@ -309,9 +304,9 @@
 										<li><a href="error404.html">404 Page</a></li>
 									</ul>
 								</li>
-								<li><a href="shop-grid.html">Shop</a>
+								<li><a href="shop-grid.html?category=0">Shop</a>
 									<ul>
-										<li><a href="shop-grid.html">Shop Grid</a></li>
+										<li><a href="shop-grid.html?category=0">Shop Grid</a></li>
 									</ul>
 								</li>
 								<li><a href="contact.html">Contact</a></li>
@@ -367,10 +362,19 @@
 						<div class="shop__sidebar">
 							<aside class="wedget__categories poroduct--cat">
 								<h3 class="wedget__title">Product Categories</h3>
-								<ul>
-									<li><a href="#">Biography <span>(3)</span></a></li>
-									<li><a href="#">Business <span>(4)</span></a></li>
-									<li><a href="#">Cookbooks <span>(6)</span></a></li>
+								<ul class="wedget__categories-list">
+									<!-- <li>
+										<input type="radio" name="category" id="category-0">
+										<label for="category-0">All product</label>
+									</li>
+									<li>
+										<input type="radio" name="category" id="category-1">
+										<label for="category-1">All product</label>
+									</li>
+									<li>
+										<input type="radio" name="category" id="category-2">
+										<label for="category-2">All product</label>
+									</a></li>
 									<li><a href="#">Health & Fitness <span>(7)</span></a></li>
 									<li><a href="#">History <span>(8)</span></a></li>
 									<li><a href="#">Mystery <span>(9)</span></a></li>
@@ -383,7 +387,7 @@
 									<li><a href="#">Land of Stories <span>(34)</span></a></li>
 									<li><a href="#">Kids' Music <span>(60)</span></a></li>
 									<li><a href="#">Toys & Games <span>(3)</span></a></li>
-									<li><a href="#">hoodies <span>(3)</span></a></li>
+									<li><a href="#">hoodies <span>(3)</span></a></li> -->
 								</ul>
 							</aside>
 							<!-- <aside class="wedget__categories pro--range">
@@ -414,26 +418,9 @@
         							<li><a href="#">x</a><a href="#">Dignissim venenatis</a></li>
         						</ul>
         					</aside> -->
-							<aside class="wedget__categories poroduct--tag">
-								<h3 class="wedget__title">Product Tags</h3>
-								<ul>
-									<li><a href="#">Biography</a></li>
-									<li><a href="#">Business</a></li>
-									<li><a href="#">Cookbooks</a></li>
-									<li><a href="#">Health & Fitness</a></li>
-									<li><a href="#">History</a></li>
-									<li><a href="#">Mystery</a></li>
-									<li><a href="#">Inspiration</a></li>
-									<li><a href="#">Religion</a></li>
-									<li><a href="#">Fiction</a></li>
-									<li><a href="#">Fantasy</a></li>
-									<li><a href="#">Music</a></li>
-									<li><a href="#">Toys</a></li>
-									<li><a href="#">Hoodies</a></li>
-								</ul>
-							</aside>
+							
 							<aside class="wedget__categories sidebar--banner">
-								<img src="images/others/banner_left.jpg" alt="banner images">
+								<img src="images/homeImage/bookstore12.jpg" alt="banner images">
 								<div class="text">
 									<h2>new products</h2>
 									<h6>save up to <br> <strong>40%</strong>off</h6>
@@ -451,16 +438,10 @@
 										<a class="nav-item nav-link" data-toggle="tab" href="#nav-list" role="tab"><i
 												class="fa fa-list"></i></a>
 									</div>
-									<p>Showing 1–12 of 40 results</p>
 									<div class="orderby__wrapper">
 										<span>Sort By</span>
 										<select class="shot__byselect">
-											<option>Default sorting</option>
-											<option>HeadPhone</option>
-											<option>Furniture</option>
-											<option>Jewellery</option>
-											<option>Handmade</option>
-											<option>Kids</option>
+											<option value="price">Price</option>
 										</select>
 									</div>
 								</div>
@@ -471,10 +452,26 @@
 								<div class="row">
 								</div>
 								<ul class="wn__pagination">
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
+									<li>
+										<input type="radio" class="pagination" name="pagination" id="page-1" value="1" checked="checked">
+										<label for="page-1">1</label>
+									</li>
+									<li>
+										<input type="radio" class="pagination" name="pagination" id="page-2" value="2">
+										<label for="page-2">2</label>
+									</li>
+									<li>
+										<input type="radio" class="pagination" name="pagination" id="page-3" value="3">
+										<label for="page-3">3</label>
+									</li>
+									<li>
+										<input type="radio" class="pagination" name="pagination" id="page-4" value="4">
+										<label for="page-4">4</label>
+									</li>
+									<li>
+										<input type="radio" class="pagination" name="pagination" id="page-5" value="5">
+										<label for="page-5">5</label>
+									</li>
 									<li><a href="#"><i class="zmdi zmdi-chevron-right"></i></a></li>
 								</ul>
 							</div>
