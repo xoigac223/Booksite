@@ -733,7 +733,7 @@ a {
 }
 
 .bg-image--2 {
-  background-image: url(images/bg/2.jpg);
+  background-image: url(images/homeImage/bookstore10.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -775,14 +775,14 @@ a {
 }
 
 .bg-image--8 {
-  background-image: url(images/bg/8.jpg);
+  background-image: url(images/homeImage/bookstore5.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
 }
 
 .bg-image--9 {
-  background-image: url(images/bg/9.jpg);
+  background-image: url(images/homeImage/bookstore1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -1467,6 +1467,9 @@ Elements Styles
 .product__indicator--4.arrows_style.owl-theme .owl-nav [class*="owl-"] {
   top: 41%;
 }
+.product__indicator--5.arrows_style.owl-theme .owl-nav [class*="owl-"] {
+  top: 41%;
+}
 
 .owl-theme .owl-nav [class*="owl-"]:hover {
   color: #e59285;
@@ -1541,6 +1544,10 @@ Elements Styles
 }
 
 .product__indicator--4 [class*="col-"] {
+  max-width: 100%;
+}
+
+.product__indicator--5 [class*="col-"] {
   max-width: 100%;
 }
 
@@ -2571,7 +2578,7 @@ Header Styles
 .mainmenu__nav .meninmenu li a {
   align-items: center;
   align-self: stretch;
-  color: #333;
+  color: #fff;
   display: flex;
   font-size: 14px;
   font-weight: 600;
@@ -4256,7 +4263,7 @@ h3.widget-title-modal {
 }
 
 .slider--15 .slide .slider__content p {
-  color: #3c3c3c;
+  color: #F4A460;
   font-size: 14px;
   line-height: 25px;
   margin: 15px 0 0;
@@ -4660,6 +4667,9 @@ h3.widget-title-modal {
     padding: 0 15px;
   }
   .product__indicator--4.arrows_style.owl-theme .owl-nav [class*="owl-"] {
+    top: 42%;
+  }
+  .product__indicator--5.arrows_style.owl-theme .owl-nav [class*="owl-"] {
     top: 42%;
   }
   .post__itam {
@@ -7852,20 +7862,40 @@ a.checkout__title {
   text-transform: capitalize;
 }
 
-.wedget__categories.poroduct--cat ul li a {
-  color: #333;
-  font-size: 14px;
-  font-weight: 400;
+.wedget__categories.poroduct--cat ul li .actived {
+  color: #e59285;
 }
+
 
 .wedget__categories.poroduct--cat ul li a:hover {
   color: #e59285;
 }
 
-.wedget__categories.poroduct--cat ul li a span {
-  color: #333;
-  float: right;
+.wn__pagination li input[name="pagination"]:hover + label {
+  cursor: pointer;
+  color: #fff;
+  border-radius: 50%;
+  background-color: #007bff;
+  text-align: center;
 }
+
+.wn__pagination li input[name="pagination"]:checked + label {
+  transition: 0.1s;
+  color: #fff;
+  border-radius: 50%;
+  background-color: #007bff;
+  text-align: center;
+}
+
+.wn__pagination li input[name="pagination"] {
+  display: none;
+}
+
+.wn__pagination li input[name="pagination"] + label {
+  margin: 0;
+  padding: 5px 14px;
+}
+
 
 .wedget__categories.pro--range {
   margin: 0 0 30px;
@@ -7955,7 +7985,7 @@ a.checkout__title {
 }
 
 .wedget__categories.sidebar--banner .text h2 {
-  color: #e59285;
+  color: 	#FFF8DC;
   font-size: 14px;
   text-transform: uppercase;
 }
@@ -8068,6 +8098,7 @@ a.checkout__title {
   border-color: #2e2e2e;
   color: #2e2e2e;
 }
+
 
 .shop__list__wrapper p {
   color: #3f3f3f;
