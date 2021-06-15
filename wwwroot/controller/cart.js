@@ -1,6 +1,6 @@
 function renderCart(item) {
   const cart = `<tr class="cart-table__item-${item.id}">
-    <td class="product-thumbnail"><a href="single-product.html?id=${item.id}"><img src="images/product/sm-3/1.jpg" alt="product img"></a></td>
+    <td class="product-thumbnail"><a href="single-product.html?id=${item.id}"><img src=${item.imageUrl === null ? "images/product/sm-3/1.jpg" : item.imageUrl} alt="product img"></a></td>
     <td class="product-name"><a href="#">${item.name}</a></td>
     <td class="product-price"><span class="amount">${item.price} VND</span></td>
     <td class="product-quantity"><input type="number" min="1" value="${item.amount}" class="product-quantity__input-${item.id} product-quantity__input"></td>

@@ -85,8 +85,6 @@ function renderDataEdit(data, category) {
 	// })
 
 	$("form#data").submit(function (event) {
-		
-
 		var formData = new FormData(this);
 		console.log(formData);
 		$.ajax({
@@ -99,7 +97,9 @@ function renderDataEdit(data, category) {
 			// },
 		
 		});
+		
 		event.preventDefault();
+		
 		return false;
 	});
 

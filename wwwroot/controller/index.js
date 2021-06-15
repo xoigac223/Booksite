@@ -9,7 +9,7 @@ function handlerQuickview(e) {
   <!-- Start product images -->
   <div class="product-images">
     <div class="main-image images">
-      <img alt="big images" src="images/product/big-img/1.jpg">
+      <img alt="big images" src=${product.imageUrl === null ? "images/product/big-img/1.jpg" : product.imageUrl}>
     </div>
   </div>
   <!-- end product images -->
@@ -76,8 +76,8 @@ function setListProduct(product) {
   const productItem = `<div class="col-lg-3 col-md-4 col-sm-6 col-12">
     <div class="product product__style--3">
       <div class="product__thumb">
-        <a class="first__img" href="single-product.html?id=${product.id}"><img src="images/books/1.jpg" alt="product image"></a>
-        <a class="second__img animation1" href="single-product.html?id=${product.id}"><img src="images/books/2.jpg" alt="product image"></a>
+        <a class="first__img" href="single-product.html?id=${product.id}"><img src=${product.imageUrl === null ? "images/books/1.jpg" : product.imageUrl} alt="product image"></a>
+        <a class="second__img animation1" href="single-product.html?id=${product.id}"><img src=${product.imageUrl === null ? "images/books/2.jpg" : product.imageUrl} alt="product image"></a>
         <div class="hot__box">
           <span class="hot-label">NEW PRODUCT</span>
         </div>
@@ -147,6 +147,7 @@ function slideShow(className) {
 $(document).ready(function () {
   $.get('https://localhost:5001/api/Book', (res) => {
     productList = res;
+    console.log(res);
     for (let i = 0; i < productList.length; i++) {
       setListProduct(productList[i])
     }
