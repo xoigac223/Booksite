@@ -1,7 +1,7 @@
 let productList;
 
 function handlerQuickview(e) {
-  $('.modal-body .modal-product').remove();
+  $('.modal-body').empty();
   const index = e.target.classList[0].split('-')[1] - 1;
   let product = productList[index];
 
@@ -57,7 +57,7 @@ function handlerQuickview(e) {
   $('.modal-body').append(modalProduct);
   $('.addtocart-btn .addtocart-btn__link').click((e) => {
     e.preventDefault();
-    if(sessionStorage.getItem(product.id) === null) {
+    if (sessionStorage.getItem(product.id) === null) {
       product.amount = 1;
       sessionStorage.setItem(product.id, JSON.stringify(product));
     } else {
@@ -72,21 +72,20 @@ function handlerQuickview(e) {
 
 
 
-function setListProduct(product1, product2) {
-  const doubleProductItem = `<div class="single__product">
-  <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+function setListProduct(product) {
+  const productItem = `<div class="col-lg-3 col-md-4 col-sm-6 col-12">
     <div class="product product__style--3">
       <div class="product__thumb">
-        <a class="first__img" href="single-product.html?id=${product1.id}"><img src="images/books/1.jpg" alt="product image"></a>
-        <a class="second__img animation1" href="single-product.html?id=${product1.id}"><img src="images/books/2.jpg" alt="product image"></a>
+        <a class="first__img" href="single-product.html?id=${product.id}"><img src="images/books/1.jpg" alt="product image"></a>
+        <a class="second__img animation1" href="single-product.html?id=${product.id}"><img src="images/books/2.jpg" alt="product image"></a>
         <div class="hot__box">
-          <span class="hot-label">PRODUCT</span>
+          <span class="hot-label">NEW PRODUCT</span>
         </div>
       </div>
       <div class="product__content content--center content--center">
-        <h4><a href="single-product.html?id=${product1.id}">${product1.name}</a></h4>
+        <h4><a href="single-product.html?id=${product.id}">${product.name}</a></h4>
         <ul class="prize d-flex">
-          <li>${product1.price} VND</li>
+          <li>${product.price} VND</li>
         </ul>
         <div class="action">
           <div class="actions_inner">
@@ -94,7 +93,7 @@ function setListProduct(product1, product2) {
               <li><a class="cart" href="cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
               <li><a class="wishlist" href="#"><i class="bi bi-shopping-cart-full"></i></a></li>
               <li><a class="compare" href="#"><i class="bi bi-heart-beat"></i></a></li>
-              <li><a data-toggle="modal" title="Quick View" class="quickview-${product1.id} quickview modal-view detail-link" href="#productmodal"><i class="quickview-${product1.id} bi bi-search"></i></a></li>
+              <li><a data-toggle="modal" title="Quick View" class="quickview-${product.id} quickview modal-view detail-link" href="#productmodal"><i class="quickview-${product.id} bi bi-search"></i></a></li>
             </ul>
           </div>
         </div>
@@ -109,82 +108,50 @@ function setListProduct(product1, product2) {
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-    <div class="product product__style--3">
-      <div class="product__thumb">
-        <a class="first__img" href="single-product.html?id=${product2.id}"><img src="images/books/3.jpg" alt="product image"></a>
-        <a class="second__img animation1" href="single-product.html?id=${product2.id}"><img src="images/books/9.jpg" alt="product image"></a>
-        <div class="hot__box">
-          <span class="hot-label">PRODUCT</span>
-        </div>
-      </div>
-      <div class="product__content content--center content--center">
-        <h4><a href="single-product.html?id=${product2.id}">${product2.name}</a></h4>
-        <ul class="prize d-flex">
-          <li>${product2.price} VND</li>
-        </ul>
-        <div class="action">
-          <div class="actions_inner">
-            <ul class="add_to_links">
-              <li><a class="cart" href="cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
-              <li><a class="wishlist" href="#"><i class="bi bi-shopping-cart-full"></i></a></li>
-              <li><a class="compare" href="#"><i class="bi bi-heart-beat"></i></a></li>
-              <li><a data-toggle="modal" title="Quick View" class="quickview-${product2.id} quickview modal-view detail-link" href="#productmodal"><i class="quickview-${product2.id} bi bi-search"></i></a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="product__hover--content">
-          <ul class="rating d-flex">
-            <li class="on"><i class="fa fa-star-o"></i></li>
-            <li class="on"><i class="fa fa-star-o"></i></li>
-            <li class="on"><i class="fa fa-star-o"></i></li>
-            <li><i class="fa fa-star-o"></i></li>
-            <li><i class="fa fa-star-o"></i></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
   </div>`
-  $('#product__indicator--4__product-list').append(doubleProductItem);
+  $(`${product.id % 2 === 0 ? '#product__indicator--4__product-list' : '#product__indicator--5__product-list'}`).append(productItem);
+  
 }
 
+function slideShow(className) {
+  $(className).owlCarousel({
+    loop: true,
+    margin: 0,
+    nav: true,
+    autoplay: false,
+    autoplayTimeout: 10000,
+    items: 4,
+    navText: ['<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>'],
+    dots: false,
+    lazyLoad: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      576: {
+        items: 2
+      },
+      768: {
+        items: 3
+      },
+      992: {
+        items: 4
+      },
+      1920: {
+        items: 4
+      }
+    }
+  });
+}
 
 $(document).ready(function () {
   $.get('https://localhost:5001/api/Book', (res) => {
     productList = res;
-    for (let i = 0; i < productList.length; i += 2) {
-      setListProduct(productList[i], productList[i + 1])
+    for (let i = 0; i < productList.length; i++) {
+      setListProduct(productList[i])
     }
-    $('.product__indicator--4').owlCarousel({
-      loop: true,
-      margin: 0,
-      nav: true,
-      autoplay: false,
-      autoplayTimeout: 10000,
-      items: 4,
-      navText: ['<i class="zmdi zmdi-chevron-left"></i>', '<i class="zmdi zmdi-chevron-right"></i>'],
-      dots: false,
-      lazyLoad: true,
-      responsive: {
-        0: {
-          items: 1
-        },
-        576: {
-          items: 2
-        },
-        768: {
-          items: 3
-        },
-        992: {
-          items: 4
-        },
-        1920: {
-          items: 4
-        }
-      }
-    });
+    slideShow('.product__indicator--4');
+    slideShow('.product__indicator--5');
     $('.add_to_links .quickview').click((e) => {
       // console.log('hello');
       handlerQuickview(e);

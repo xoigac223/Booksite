@@ -182,77 +182,88 @@
 								</div>
 
 								<div class="modal-body">
-									<form class="form-horizontal form">
+									<form class="form-horizontal form" method="put" id="data">
 										<div class="row">
 											<div class="col" style="padding: 25px;">
 												<div class="form-group">
+													<label for="bookId">Id:</label>
+													<input type="number" class="form-control" id="bookId" name="id" autocomplete="off" required disabled>
+												</div>
+
+												<div class="form-group">
 													<label for="name1">Name :</label>
-													<input type="text" class="form-control" id="name1" autocomplete="off" required>
+													<input type="text" class="form-control" id="name1" name="name" autocomplete="off" required>
 												</div>
 
 												<div class="form-group">
 													<label for="price1">Price :</label>
-													<input type="text" class="form-control" id="price1">
+													<input type="text" class="form-control" id="price1" name="price">
 												</div>
 
 												<div class="form-group">
 													<label for="status1">Status :</label>
-													<input type="number" class="form-control" id="status1">
+													<input type="number" class="form-control" id="status1" name="status">
 												</div>
 
 												<div class="form-group">
 													<label for="pages1">Pages :</label>
-													<input type="number" class="form-control" id="pages1">
+													<input type="number" class="form-control" id="pages1" name="pages">
+												</div>
+
+												<div class="form-group">
+													<label for="author1">Auhor :</label>
+													<input type="author" class="form-control" id="author1" name="author">
 												</div>
 
 												<div class="form-group">
 													<label for="category1">Category:</label>
 													<select name="" id="category1" class="form-control" multiple>
-														<option value="2">Book love</option>
-														<option value="2">Book love</option>
-														<option value="2">Book love</option>
+
 													</select>
 												</div>
+
+
 											</div>
 
 											<div class="col" style="padding: 25px;">
 												<div class="form-group">
 													<label for="publisher1">Publisher:</label>
-													<textarea class="form-control" id="publisher1" rows="3"></textarea>
+													<textarea class="form-control" id="publisher1" rows="2" name="publisher"></textarea>
 												</div>
 
 												<div class="form-group">
 													<label for="publish-year1">Publish Year:</label>
-													<input type="text" class="form-control" id="publish-year1">
+													<input type="text" class="form-control" id="publish-year1" name="publishYear">
 												</div>
 
 												<div class="form-group">
 													<label for="description1">Description:</label>
-													<textarea class="form-control" id="description1" rows="3"></textarea>
+													<textarea class="form-control" id="description1" rows="3" name="description"></textarea>
 												</div>
 
 												<div class="form-group">
 													<label for="details1">Details:</label>
-													<textarea class="form-control" id="details1" rows="3"></textarea>
+													<textarea class="form-control" id="details1" rows="3" name="details"></textarea>
 												</div>
 
 
 												<div class="form-group">
 													<label for="imgage-url1">Image:</label>
-													<input type="file" class="form-control-file" id="imgage-url1" accept="image/*">
+													<input type="file" class="form-control-file" id="imgage-url1" accept="image/*" name="imageFile">
 												</div>
 
 											</div>
 										</div>
+									<button type="submit" class="btn btn-primary btn-save">Save changes</button>
 
 									</form>
-
+									
 
 								</div>
 
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary btn-save">Save changes</button>
+
 								</div>
 
 							</div>
@@ -270,43 +281,12 @@
 								<th>Pages</th>
 								<th>Author</th>
 								<th>Publisher</th>
-								<th>Publish Yearl</th>
-								<th>Desciption</th>
-								<th>Details</th>
-								<th>Image</th>
+								<th>Publish Year</th>
 								<th>Action</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Doe</td>
-								<td>john@exampld</td>
-								<td>Johns</td>
-								<td>Doed</td>
-								<td>john@</td>
-								<td>John</td>
-								<td>Doe</td>
-								<td>Doe</td>
-								<td>Doe</td>
-								<td>Doe</td>
-								<td id="action">
-									<button class="btn btn-primary btn-action" data-toggle="modal" data-target="#editBook">Edit</button>
-								</td>
-							<tr>
-								<td>1</td>
-								<td>Doe</td>
-								<td>john@exampld</td>
-								<td>Johns</td>
-								<td>Doed</td>
-								<td>john@</td>
-								<td>John</td>
-								<td>Doe</td>
-								<td id="action">
-									<button class="btn btn-primary btn-action" data-toggle="modal"
-										data-target="#editBook">Confirm</button>
-								</td>
-							</tr>
+						<tbody id="body-table">
+
 						</tbody>
 					</table>
 
@@ -344,12 +324,9 @@
 		</div>
 	</div>
 
-	<script src="./index.js"></script>
+	<script src="index.js"></script>
 	<script>
-		$(".btn-save").click(function (e) {
-			$("#imgage-url").files;
-			console.log($('#imgage-url')[0].files[0])
-		})
+
 
 		$(".btn-action").click(function () {
 			$("#name1").val("kien");

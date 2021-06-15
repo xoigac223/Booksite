@@ -1,5 +1,15 @@
 let listProduct;
 
+$.urlParam = function (name) {
+  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+  if (results == null) {
+    return null;
+  }
+  return decodeURI(results[1]) || 0;
+}
+
+const category = $.urlParam('category');
+
 function handlerProduct(item, i) {
   const product = `<div class="col-lg-4 col-md-4 col-sm-6 col-12">
   <div class="product">
@@ -68,8 +78,8 @@ function handlerProduct(item, i) {
 
 function handlerAddCart(e) {
   const index = e.target.classList[0].split('-')[1];
-  let product = listProduct[index];
-  if(sessionStorage.getItem(product.id) === null) {
+  let product = listProduct[index].bookNavigation;
+  if (sessionStorage.getItem(product.id) === null) {
     product.amount = 1;
     sessionStorage.setItem(product.id, JSON.stringify(product));
   } else {
@@ -80,16 +90,37 @@ function handlerAddCart(e) {
   alert('Add item success!');
 }
 
-$(document).ready(function () {
-  $.get('https://localhost:5001/api/Book', (res) => {
+function getFilterProduct(page) {
+  $('.shop-grid .row').empty();
+  $('.shop-grid .list__view__wrapper').empty();
+  $.get(`${category == 0 ? `https://localhost:5001/api/Search?Sorts=price&Page=${page}&PageSize=6` : `https://localhost:5001/api/Search?Filters=category%3D%3D${category}&Sorts=price&Page=${page}&PageSize=6`}`, (res) => {
     let i = 0;
     listProduct = res;
     res.forEach((item) => {
-      handlerProduct(item, i);
+      handlerProduct(item.bookNavigation, i);
       i++;
     })
     $('.cart__action-link').click((e) => {
       handlerAddCart(e);
     })
+  })
+}
+
+$(document).ready(function () {
+  $.get('https://localhost:5001/api/Category', (res) => {
+    $('.wedget__categories-list').append(`<li class="wedget__categories-item">
+        <a class="${category == 0 ? 'actived' : ''}" href="shop-grid.html?category=0">Tất cả sản phẩm</a>
+      </li>`
+    );
+    res.forEach((item) => {
+      $('.wedget__categories-list').append(`<li class="wedget__categories-item ">
+          <a class="${category == item.id ? 'actived' : ''}" href="shop-grid.html?category=${item.id}">${item.name}</a>
+        </li>`
+      );
+    })
+  })
+  getFilterProduct(1);
+  $('.wn__pagination input[name=pagination]').change(function() {
+    getFilterProduct($(this).val());
   })
 });
