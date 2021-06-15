@@ -29,5 +29,13 @@ namespace BookShop.Controllers
             return Json(result);
         }
         
+        [HttpGet("book")]
+        public JsonResult GetBooks(SieveModel sieveModel) 
+        {
+            var result = _context.Books.AsNoTracking();
+            result = _sieveProcessor.Apply(sieveModel, result);
+            return Json(result);
+        }
+        
     }
 }

@@ -147,6 +147,11 @@ namespace BookShop.Models
                     .IsRequired()
                     .HasMaxLength(200)
                     .HasColumnName("address");
+                
+                entity.Property(e => e.Total)
+                    .IsRequired()
+                    .HasMaxLength(200)
+                    .HasColumnName("total");
 
                 entity.Property(e => e.DateBill).HasColumnName("date_bill");
 
