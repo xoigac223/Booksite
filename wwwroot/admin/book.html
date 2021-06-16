@@ -71,7 +71,7 @@
 					<!-- Modal Add book -->
 					<!-- Button trigger modal -->
 					<div class="add-btn">
-						<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#addBook">
+						<button type="button" class="btn btn-success btn-lg btn-add" data-toggle="modal" data-target="#addBook">
 							<i class="fas fa-plus"></i>Add book
 						</button>
 					</div>
@@ -90,69 +90,77 @@
 								</div>
 
 								<div class="modal-body">
-									<form class="form-horizontal form">
+									<form class="form-horizontal form" method="POST" id="add">
 										<div class="row">
 											<div class="col" style="padding-left: 25px;">
+
 												<div class="form-group">
-													<label for="name">Name :</label>
-													<input type="text" class="form-control" id="name" autocomplete="off" required>
+													<label for="name1">Name :</label>
+													<input type="text" class="form-control" id="name" name="name" autocomplete="off" required>
 												</div>
 
 												<div class="form-group">
-													<label for="price">Price :</label>
-													<input type="text" class="form-control" id="price">
+													<label for="price1">Price :</label>
+													<input type="text" class="form-control" id="price" name="price">
 												</div>
 
 												<div class="form-group">
-													<label for="status">Status :</label>
-													<input type="number" class="form-control" id="status">
+													<label for="status1">Status :</label>
+													<input type="number" class="form-control" id="status" name="status">
 												</div>
 
 												<div class="form-group">
-													<label for="pages">Pages :</label>
-													<input type="number" class="form-control" id="pages">
+													<label for="pages1">Pages :</label>
+													<input type="number" class="form-control" id="pages" name="pages">
 												</div>
 
 												<div class="form-group">
-													<label for="category">Category:</label>
+													<label for="author1">Auhor :</label>
+													<input type="author" class="form-control" id="author" name="author">
+												</div>
+
+												<div class="form-group">
+													<label for="category1">Category:</label>
 													<select name="" id="category" class="form-control" multiple>
-														<option value="2">Book love</option>
-														<option value="2">Book love</option>
-														<option value="2">Book love</option>
+
 													</select>
 												</div>
+
+
 											</div>
 
-											<div class="col" style="padding-right: 25px;">
+											<div class="col" style="padding: 0 25px;">
 												<div class="form-group">
-													<label for="publisher">Publisher:</label>
-													<textarea class="form-control" id="publisher" rows="3"></textarea>
+													<label for="publisher1">Publisher:</label>
+													<textarea class="form-control" id="publisher" rows="2" name="publisher"></textarea>
 												</div>
 
 												<div class="form-group">
-													<label for="publish-year">Publish Year:</label>
-													<input type="text" class="form-control" id="publish-year">
+													<label for="publish-year1">Publish Year:</label>
+													<input type="text" class="form-control" id="publish-year" name="PublishingYear">
 												</div>
 
 												<div class="form-group">
-													<label for="description">Description:</label>
-													<textarea class="form-control" id="description" rows="3"></textarea>
+													<label for="description1">Description:</label>
+													<textarea class="form-control" id="description" rows="3" name="description"></textarea>
 												</div>
 
 												<div class="form-group">
-													<label for="details">Details:</label>
-													<textarea class="form-control" id="details" rows="3"></textarea>
+													<label for="details1">Details:</label>
+													<textarea class="form-control" id="details" rows="3" name="details"></textarea>
 												</div>
 
 
 												<div class="form-group">
-													<label for="imgage-url">Image:</label>
-													<input type="file" class="form-control-file" id="imgage-url">
+													<img alt="" id="bookImage">
+													<label for="imgage-url1">Image:</label>
+													<input type="file" class="form-control-file" id="imgage-url" name="ImageFile">
 												</div>
 
 											</div>
 										</div>
 
+										<button type="button" class="btn btn-primary btn-addBook">Add Book</button>
 									</form>
 
 
@@ -160,7 +168,6 @@
 
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary btn-save">Save changes</button>
 								</div>
 
 							</div>

@@ -31,6 +31,8 @@ function renderBook(Books) {
 
 function renderCategories(categories, selectCategory) {
 	$("#category1 option").remove();
+	$("#category option").remove();
+
 	let categoriesClone = [...categories];
 	let allCate = categoriesClone.map(category => (
 		`<option value=${category.id}>${category.name}</option>`
@@ -42,6 +44,8 @@ function renderCategories(categories, selectCategory) {
 	});
 
 	$("#category1").append(allCate);
+	$("#category").append(allCate);
+
 }
 
 function renderDataEdit(data, category) {
@@ -88,6 +92,7 @@ $(document).ready(async function () {
 		.then(data => {
 			categories = data;
 		})
+	renderCategories(categories)
 
 	// call api book
 	await fetchApi("/api/book", "GET")
@@ -125,8 +130,23 @@ $(document).ready(async function () {
 
 		})
 
+		$("#add").submit(function (event) {
+			var formData = new FormData($(this)[0]);
 
-	
+			$.ajax({
+				url: `/api/Book/${data.id}`,
+				type: 'POST',
+				data: formData,
+				processData: false,
+				contentType: false,
+				cache: false,
+				success: async function (data) {
+					await addCategory($("#category").val(), data);
+					window.location.reload();
+				},
+			});
+			event.preventDefault();
+		});
 
 	// $("#action button").click(() => {
 	//     $(this).hide();
