@@ -87,3 +87,13 @@ $("#form_register").validate({
         }
     }
 });
+
+checkoutLogin = function checkoutLogin() {
+    var showLogin = $('.showlogin');
+    var form = $('.checkout_login');
+    showLogin.on('click', function (e) {
+        e.preventDefault();
+        form.slideToggle();
+        form.remove('style');
+    });
+}

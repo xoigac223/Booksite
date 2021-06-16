@@ -271,12 +271,12 @@
             <!-- ko if: amountCart -->
         	<div class="container">
                 <!-- ko ifnot: isLogin -->
-        		<div class="row">
+        		<div class="row" data-bind="template: {afterRender: checkoutLogin}">
         			<div class="col-lg-12">
         				<div class="wn_checkout_wrap">
         					<div class="checkout_info">
         						<span>Returning customer ?</span>
-        						<a class="showlogin" href="#">Click here to login</a>
+        						<a class="showlogin">Click here to login</a>
         					</div>
         					<div class="checkout_login">
         						<form class="wn__checkout__form" id="login_form">
