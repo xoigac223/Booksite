@@ -91,7 +91,7 @@ namespace BookShop.Controllers
                 result.Add(book.Name, sale);
             }
 
-            return result.OrderByDescending(x => x.Value).Take(3).ToDictionary(x => x.Key, x => x.Value);
+            return result.OrderByDescending(x => x.Value).Take(5).ToDictionary(x => x.Key, x => x.Value);
         }
     }
 }
