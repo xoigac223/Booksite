@@ -7,7 +7,8 @@ let viewModel = {
     fullname: ko.observable(),
     address: ko.observable(),
     phone: ko.observable(),
-    email: ko.observable()
+    email: ko.observable(),
+    amountCart: ko.observable(0)
 };
 
 ko.applyBindings(viewModel);
