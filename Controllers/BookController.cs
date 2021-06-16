@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -70,6 +71,7 @@ namespace BookShop.Controllers
         public async Task<IActionResult> PutBook(int id, [FromForm] BookFormDto bookFormDto)
         {
             Book book = BookFromDtoToBook.Convert(bookFormDto);
+            book.ImageUrl =_context.Books.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id).Result.ImageUrl;
             if (id != book.Id)
             {
                 return BadRequest();
