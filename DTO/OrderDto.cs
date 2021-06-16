@@ -14,5 +14,7 @@ namespace BookShop.DTO
         public float Shipping { get; set; }
         public byte Status { get; set; }
         public float  Total { get; set; }
+        
+        public int Quantity { get; set; }
     }
 }
