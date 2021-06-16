@@ -1,5 +1,17 @@
 let listProduct;
 
+let listShopping = [];
+
+function getListShopping() {
+  if (localStorage.getItem('cart') === null) {
+    localStorage.setItem('cart', JSON.stringify([]));
+  } else {
+    listShopping = JSON.parse(localStorage.getItem('cart'));
+  }
+}
+
+getListShopping();
+
 $.urlParam = function (name) {
   var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
   if (results == null) {
@@ -10,12 +22,13 @@ $.urlParam = function (name) {
 
 const category = $.urlParam('category');
 
-function handlerProduct(item, i) {
+function handlerProduct(data, i) {
+  const item = data.id === undefined ? data.bookNavigation : data;
   const product = `<div class="col-lg-4 col-md-4 col-sm-6 col-12">
   <div class="product">
     <div class="product__thumb">
-      <a class="first__img" href="single-product.html?id=${item.id}"><img src="images/product/1.jpg" alt="product image"></a>
-      <a class="second__img animation1" href="single-product.html?id=${item.id}"><img src="images/product/2.jpg" alt="product image"></a>
+      <a class="first__img" href="single-product.html?id=${item.id}"><img src=${item.imageUrl === null ? "images/product/1.jpg" : item.imageUrl} alt="product image"></a>
+      <a class="second__img animation1" href="single-product.html?id=${item.id}"><img src=${item.imageUrl === null ? "images/product/2.jpg" : item.imageUrl} alt="product image"></a>
       <div class="new__box">
         <span class="new-label">Product</span>
       </div>
@@ -47,9 +60,9 @@ function handlerProduct(item, i) {
   </div>`
   const listViewProduct = `<div class="list__view ${i == 0 ? '' : 'mt--40'}">
   <div class="thumb">
-    <a class="first__img" href="single-product.html?id=${item.id}"><img src="images/product/1.jpg"
+    <a class="first__img" href="single-product.html?id=${item.id}"><img src=${item.imageUrl === null ? "images/product/1.jpg" : item.imageUrl}
         alt="product images"></a>
-    <a class="second__img animation1" href="single-product.html?id=${item.id}"><img src="images/product/2.jpg"
+    <a class="second__img animation1" href="single-product.html?id=${item.id}"><img src=${item.imageUrl === null ? "images/product/2.jpg" : item.imageUrl}
         alt="product images"></a>
   </div>
   <div class="content">
@@ -78,14 +91,17 @@ function handlerProduct(item, i) {
 
 function handlerAddCart(e) {
   const index = e.target.classList[0].split('-')[1];
-  let product = listProduct[index].bookNavigation;
-  if (sessionStorage.getItem(product.id) === null) {
+  let product = listProduct[index].id === undefined ? listProduct[index].bookNavigation : listProduct[index];
+  if(listShopping.find(item => item.id === product.id) === undefined) {
     product.amount = 1;
-    sessionStorage.setItem(product.id, JSON.stringify(product));
+    listShopping.push(product);
+    localStorage.setItem('cart', JSON.stringify(listShopping));
   } else {
-    product = JSON.parse(sessionStorage.getItem(product.id));
+    product = listShopping.find(item => item.id === product.id);
+    let index = listShopping.indexOf(product);
     product.amount++;
-    sessionStorage.setItem(product.id, JSON.stringify(product));
+    listShopping[index] = product;
+    localStorage.setItem('cart', JSON.stringify(listShopping));
   }
   alert('Add item success!');
 }
@@ -93,11 +109,11 @@ function handlerAddCart(e) {
 function getFilterProduct(page) {
   $('.shop-grid .row').empty();
   $('.shop-grid .list__view__wrapper').empty();
-  $.get(`${category == 0 ? `https://localhost:5001/api/Search?Sorts=price&Page=${page}&PageSize=6` : `https://localhost:5001/api/Search?Filters=category%3D%3D${category}&Sorts=price&Page=${page}&PageSize=6`}`, (res) => {
+  $.get(`${category == 0 ? `https://localhost:5001/api/Search/book?Page=${page}&PageSize=6` : `https://localhost:5001/api/Search?Filters=category%3D%3D${category}&Sorts=price&Page=${page}&PageSize=6`}`, (res) => {
     let i = 0;
     listProduct = res;
     res.forEach((item) => {
-      handlerProduct(item.bookNavigation, i);
+      handlerProduct(item, i);
       i++;
     })
     $('.cart__action-link').click((e) => {

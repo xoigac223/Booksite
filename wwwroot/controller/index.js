@@ -1,4 +1,15 @@
 let productList;
+let listShopping = [];
+
+function getListShopping() {
+  if (localStorage.getItem('cart') === null) {
+    localStorage.setItem('cart', JSON.stringify([]));
+  } else {
+    listShopping = JSON.parse(localStorage.getItem('cart'));
+  }
+}
+
+getListShopping();
 
 function handlerQuickview(e) {
   $('.modal-body').empty();
@@ -9,7 +20,7 @@ function handlerQuickview(e) {
   <!-- Start product images -->
   <div class="product-images">
     <div class="main-image images">
-      <img alt="big images" src="images/product/big-img/1.jpg">
+      <img alt="big images" src=${product.imageUrl === null ? "images/product/big-img/1.jpg" : product.imageUrl}>
     </div>
   </div>
   <!-- end product images -->
@@ -57,13 +68,17 @@ function handlerQuickview(e) {
   $('.modal-body').append(modalProduct);
   $('.addtocart-btn .addtocart-btn__link').click((e) => {
     e.preventDefault();
-    if (sessionStorage.getItem(product.id) === null) {
+
+    if(listShopping.find(item => item.id === product.id) === undefined) {
       product.amount = 1;
-      sessionStorage.setItem(product.id, JSON.stringify(product));
+      listShopping.push(product);
+      localStorage.setItem('cart', JSON.stringify(listShopping));
     } else {
-      product = JSON.parse(sessionStorage.getItem(product.id));
+      product = listShopping.find(item => item.id === product.id);
+      let index = listShopping.indexOf(product);
       product.amount++;
-      sessionStorage.setItem(product.id, JSON.stringify(product));
+      listShopping[index] = product;
+      localStorage.setItem('cart', JSON.stringify(listShopping));
     }
     alert('Add success!');
     window.location.reload();
@@ -76,8 +91,8 @@ function setListProduct(product) {
   const productItem = `<div class="col-lg-3 col-md-4 col-sm-6 col-12">
     <div class="product product__style--3">
       <div class="product__thumb">
-        <a class="first__img" href="single-product.html?id=${product.id}"><img src="images/books/1.jpg" alt="product image"></a>
-        <a class="second__img animation1" href="single-product.html?id=${product.id}"><img src="images/books/2.jpg" alt="product image"></a>
+        <a class="first__img" href="single-product.html?id=${product.id}"><img src=${product.imageUrl === null ? "images/books/1.jpg" : product.imageUrl} alt="product image"></a>
+        <a class="second__img animation1" href="single-product.html?id=${product.id}"><img src=${product.imageUrl === null ? "images/books/2.jpg" : product.imageUrl} alt="product image"></a>
         <div class="hot__box">
           <span class="hot-label">NEW PRODUCT</span>
         </div>
@@ -110,7 +125,7 @@ function setListProduct(product) {
     </div>
   </div>`
   $(`${product.id % 2 === 0 ? '#product__indicator--4__product-list' : '#product__indicator--5__product-list'}`).append(productItem);
-  
+
 }
 
 function slideShow(className) {
@@ -153,7 +168,6 @@ $(document).ready(function () {
     slideShow('.product__indicator--4');
     slideShow('.product__indicator--5');
     $('.add_to_links .quickview').click((e) => {
-      // console.log('hello');
       handlerQuickview(e);
     });
   });

@@ -98,10 +98,10 @@ namespace BookShop.Controllers
         }
 
         // DELETE: api/CategoryBook/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategoryBook(int id)
+        [HttpDelete("{idCategory}/{idBook}")]
+        public async Task<IActionResult> DeleteCategoryBook(int idCategory, int idBook)
         {
-            var categoryBook = await _context.CategoryBooks.FindAsync(id);
+            var categoryBook = await _context.CategoryBooks.FindAsync(idCategory, idBook);
             if (categoryBook == null)
             {
                 return NotFound();

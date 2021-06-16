@@ -2674,7 +2674,7 @@ Header Styles
   top: 120%;
   transition: all 0.5s ease 0s;
   visibility: hidden;
-  width: 720px;
+  width: 600px;
   z-index: 3000;
   padding: 25px 0;
 }
@@ -2684,7 +2684,7 @@ Header Styles
 }
 
 .meninmenu li.drop .megamenu.mega03 {
-  width: 720px;
+  width: 400px;
 }
 
 .meninmenu li.drop .megamenu.mega04 {
@@ -2704,7 +2704,7 @@ Header Styles
 }
 
 .meninmenu li.drop .megamenu .item.item03 {
-  flex-basis: 33.33%;
+  flex-basis: 100%;
 }
 
 .meninmenu li.drop .megamenu .item.item04 {
@@ -2985,7 +2985,7 @@ Header Styles
     padding-right: 40px;
   }
   .meninmenu li.drop .megamenu.mega03 {
-    width: 600px;
+    width: 400px;
   }
 }
 

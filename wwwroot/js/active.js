@@ -203,7 +203,7 @@
 
 
   /*=============  Produst Activation  ==========*/
-  
+
 
   /*=============  Product Activation ============*/
   // $('.product__indicator--4').owlCarousel({
@@ -526,7 +526,20 @@
 
 })(jQuery);
 
+let listShop = [];
+
+function getListShopping() {
+  if (localStorage.getItem('cart') === null) {
+    localStorage.setItem('cart', JSON.stringify([]));
+  } else {
+    listShop = JSON.parse(localStorage.getItem('cart'));
+  }
+}
+
+getListShopping();
+
 function handlerMiniProduct(item) {
+  // console.log(item)
   const miniProduct = `<div class="miniproduct__${item.id} item01 d-flex mt--10">
     <div class="thumb">
       <a href="single-product.html?id=${item.id}"><img src="images/product/sm-img/3.jpg"
@@ -543,6 +556,7 @@ function handlerMiniProduct(item) {
       </div>
     </div>
   </div>`
+  // console.log(miniProduct);
   $('.miniproduct').append(miniProduct);
 }
 
@@ -553,41 +567,39 @@ function handlerDeleteProduct(e) {
   if (flag === true) {
     let total = 0;
     $(`.miniproduct__${id}`).remove();
-    sessionStorage.removeItem(id);
-    Object.keys(sessionStorage).forEach((key) => {
-      const item = JSON.parse(sessionStorage.getItem(key));
-      total += item.amount * item.price;
+    listShop = listShop.filter(item => item.id !== parseInt(id));
+    listShop.forEach((key) => {
+      total += key.amount * key.price;
     });
-    
+    localStorage.setItem('cart', JSON.stringify(listShop));
     if ($(`.cart-table__item-${id}`)[0] !== undefined) {
       $(`.cart-table__item-${id}`).remove();
       $('.cart__total__amount-price').text(`${total} VND`)
     }
     $('.total_amount-price').text(`${total} VND`)
-    $('.shopcart .cartbox_active .product_qun').text(sessionStorage.length)
-    $('.item-total__num').text(`${sessionStorage.length} items`);
+    $('.shopcart .cartbox_active .product_qun').text(listShop.length)
+    $('.item-total__num').text(`${listShop.length} items`);
   }
 }
 
 $(document).ready(function () {
   $('.shopcart .cartbox_active').click((e) => {
+    getListShopping();
     let total = 0;
-    $('.single__items .miniproduct').remove();
-    $('.single__items').append('<div class="miniproduct"></div>');
-    Object.keys(sessionStorage).forEach((key) => {
-      const item = JSON.parse(sessionStorage.getItem(key));
-      total += item.amount * item.price;
-      // console.log(item);
-      handlerMiniProduct(item);
+    $('.miniproduct').empty();
+    listShop.forEach((key) => {
+      total += key.amount * key.price;
+      // console.log(key);
+      handlerMiniProduct(key);
     });
 
-    $('.item-total__num').text(`${sessionStorage.length} items`);
+    $('.item-total__num').text(`${listShop.length} items`);
     $('.total_amount-price').text(`${total} VND`)
     $('.miniproduct__delete').click((e) => {
       handlerDeleteProduct(e);
     })
   })
-  $('.shopcart .cartbox_active .product_qun').text(sessionStorage.length);
+  $('.shopcart .cartbox_active .product_qun').text(listShop.length);
   $.get('https://localhost:5001/api/Category', (res) => {
     res.forEach((item) => {
       $('.megamenu .megamenu__categories').append(`<li><a href="shop-grid.html?category=${item.id}">${item.name}</a></li>`)

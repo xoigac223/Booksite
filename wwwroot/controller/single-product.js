@@ -1,4 +1,3 @@
-
 $.urlParam = function (name) {
   var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
   if (results == null) {
@@ -8,12 +7,24 @@ $.urlParam = function (name) {
 }
 const id = $.urlParam('id');
 
+let listShopping = [];
+
+function getListShopping() {
+  if (localStorage.getItem('cart') === null) {
+    localStorage.setItem('cart', JSON.stringify([]));
+  } else {
+    listShopping = JSON.parse(localStorage.getItem('cart'));
+  }
+}
+
+getListShopping();
+
 function renderProduct(res) {
   const product = `<div class="row">
   <div class="col-lg-6 col-12">
     <div class="wn__fotorama__wrapper">
       <div class="fotorama wn__fotorama__action" data-nav="thumbs">
-          <a href="1.jpg"><img src="images/product/1.jpg" alt=""></a>
+          <a href="1.jpg"><img src=${res.imageUrl === null ? "images/product/1.jpg" : res.imageUrl} alt=""></a>
       </div>
     </div>
   </div>
@@ -59,15 +70,27 @@ function renderProduct(res) {
 function handlerAddToCart(res) {
   const amount = parseInt($('.box-tocart__qty').val());
   let product = res;
-  if (sessionStorage.getItem(product.id) === null) {
-    product.amount = amount;
-    sessionStorage.setItem(product.id, JSON.stringify(product));
+  if(listShopping.find(item => item.id === product.id) === undefined) {
+    product.amount = parseInt(amount);
+    listShopping.push(product);
+    localStorage.setItem('cart', JSON.stringify(listShopping));
   } else {
-    product = JSON.parse(sessionStorage.getItem(product.id));
+    product = listShopping.find(item => item.id === product.id);
+    let index = listShopping.indexOf(product);
     product.amount = parseInt(product.amount);
-    product.amount += amount;
-    sessionStorage.setItem(product.id, JSON.stringify(product));
+    product.amount += parseInt(amount);
+    listShopping[index] = product;
+    localStorage.setItem('cart', JSON.stringify(listShopping));
   }
+  // if (sessionStorage.getItem(product.id) === null) {
+  //   product.amount = amount;
+  //   sessionStorage.setItem(product.id, JSON.stringify(product));
+  // } else {
+  //   product = JSON.parse(sessionStorage.getItem(product.id));
+  //   product.amount = parseInt(product.amount);
+  //   product.amount += amount;
+  //   sessionStorage.setItem(product.id, JSON.stringify(product));
+  // }
   alert('Add item success!');
   window.location.href = '/cart.html';
 }
@@ -76,9 +99,9 @@ function handlerRelatedProduct(item) {
   const product = `<div class="col-lg-4 col-md-4 col-sm-6 col-12">
   <div class="product">
     <div class="product__thumb">
-      <a class="first__img" href="single-product.html?id=${item.id}"><img src="images/product/9.jpg"
+      <a class="first__img" href="single-product.html?id=${item.id}"><img src=${item.imageUrl === null ? "images/product/9.jpg" : item.imageUrl}
           alt="product image"></a>
-      <a class="second__img animation1" href="single-product.html?id=${item.id}"><img src="images/product/8.jpg"
+      <a class="second__img animation1" href="single-product.html?id=${item.id}"><img src=${item.imageUrl === null ? "images/product/8.jpg" : item.imageUrl}
           alt="product image"></a>
       <div class="new__box">
         <span class="new-label">Product</span>

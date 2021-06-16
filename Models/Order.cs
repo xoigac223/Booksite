@@ -20,6 +20,9 @@ namespace BookShop.Models
         public string Phone { get; set; }
         public string Email { get; set; }
 
+        public float Shipping { get; set; }
+        
+        public byte Status { get; set; } 
         public virtual User UsernameNavigation { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
