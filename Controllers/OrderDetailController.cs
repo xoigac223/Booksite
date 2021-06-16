@@ -29,9 +29,10 @@ namespace BookShop.Controllers
 
         // GET: api/OrderDetail/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrderDetail>> GetOrderDetail(int id)
+        public async Task<ActionResult<IEnumerable<OrderDetail>>> GetOrderDetail(int id)
         {
-            var orderDetail = await _context.OrderDetails.FindAsync(id);
+            var orderDetail = await _context.OrderDetails.Include(o => o.Book).Include(o => o.Order)
+                .Where(detail => detail.OrderId == id).ToListAsync();
 
             if (orderDetail == null)
             {
