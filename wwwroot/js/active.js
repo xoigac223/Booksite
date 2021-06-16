@@ -528,7 +528,7 @@
 
 let listShop = [];
 
-function getListShopping() {
+function getListShop() {
   if (localStorage.getItem('cart') === null) {
     localStorage.setItem('cart', JSON.stringify([]));
   } else {
@@ -536,7 +536,7 @@ function getListShopping() {
   }
 }
 
-getListShopping();
+getListShop();
 
 function handlerMiniProduct(item) {
   // console.log(item)
@@ -551,7 +551,7 @@ function handlerMiniProduct(item) {
       <div class="product_prize d-flex justify-content-between">
         <span class="qun">Số lượng: ${item.amount}</span>
         <ul class="d-flex justify-content-end">
-          <li><a href="#" class="miniproduct__delete-${item.id} miniproduct__delete"><i class="miniproduct__delete-${item.id} zmdi zmdi-delete"></i></a></li>
+          <li><button class="miniproduct__delete-${item.id} miniproduct__delete" onclick="handlerDeleteProduct(this)"><i class="miniproduct__delete-${item.id} zmdi zmdi-delete" ></i></button></li>
         </ul>
       </div>
     </div>
@@ -561,12 +561,13 @@ function handlerMiniProduct(item) {
 }
 
 function handlerDeleteProduct(e) {
-  e.preventDefault();
-  const id = e.target.classList[0].split('-')[1];
+  getListShop();
+  const id = e.classList[0].split('-')[1];
   const flag = window.confirm("Are you sure you want to delete this item?")
   if (flag === true) {
     let total = 0;
     $(`.miniproduct__${id}`).remove();
+    console.log(listShop);
     listShop = listShop.filter(item => item.id !== parseInt(id));
     listShop.forEach((key) => {
       total += key.amount * key.price;
@@ -583,8 +584,10 @@ function handlerDeleteProduct(e) {
 }
 
 $(document).ready(function () {
+  
+  
   $('.shopcart .cartbox_active').click((e) => {
-    getListShopping();
+    getListShop();
     let total = 0;
     $('.miniproduct').empty();
     listShop.forEach((key) => {
@@ -595,9 +598,9 @@ $(document).ready(function () {
 
     $('.item-total__num').text(`${listShop.length} items`);
     $('.total_amount-price').text(`${total} VND`)
-    $('.miniproduct__delete').click((e) => {
-      handlerDeleteProduct(e);
-    })
+    // $('.miniproduct__delete').click((e) => {
+    //   handlerDeleteProduct(e);
+    // })
   })
   $('.shopcart .cartbox_active .product_qun').text(listShop.length);
   $.get('https://localhost:5001/api/Category', (res) => {
