@@ -39,7 +39,7 @@ function removeCart(e) {
   if (flag === true) {
     const id = e.target.classList[0].split('-')[1];
     listShopping = listShopping.filter(item => item.id !== parseInt(id));
-    localStorage.setItem('cart', JSON.stringify(lislistShopping));
+    localStorage.setItem('cart', JSON.stringify(listShopping));
     $(`.cart-table__item-${id}`).remove();
     if ($(`.miniproduct__${id}`)[0] !== undefined) {
       $(`.miniproduct__${id}`).remove();
@@ -49,9 +49,9 @@ function removeCart(e) {
       });
       $('.total_amount-price').text(`${total} VND`)
       $('.cart__total__amount-price').text(`${total} VND`)
-      $('.item-total__num').text(`${lislistShopping.length} items`);
+      $('.item-total__num').text(`${listShopping.length} items`);
     }
-    $('.product_qun').text(lislistShopping.length);
+    $('.product_qun').text(listShopping.length);
   }
 }
 
