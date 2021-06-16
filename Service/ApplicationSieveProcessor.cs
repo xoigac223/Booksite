@@ -29,6 +29,10 @@ namespace BookShop.Service
             mapper.Property<CategoryBook>(e => e.BookNavigation.Name)
                 .CanFilter()
                 .HasName("name");
+
+            mapper.Property<Book>(b => b.Price)
+                .CanSort()
+                .HasName("price");
             
             return mapper;
         }
