@@ -182,12 +182,11 @@
 								</div>
 
 								<div class="modal-body">
-									<form class="form-horizontal form" method="put" id="data">
+									<form class="form-horizontal form" method="PUT" id="data">
 										<div class="row">
 											<div class="col" style="padding: 25px;">
 												<div class="form-group">
-													<label for="bookId">Id:</label>
-													<input type="number" class="form-control" id="bookId" name="id" autocomplete="off" required disabled>
+													<input type="hidden" class="form-control" id="bookId" name="id" autocomplete="off" required>
 												</div>
 
 												<div class="form-group">
@@ -233,7 +232,7 @@
 
 												<div class="form-group">
 													<label for="publish-year1">Publish Year:</label>
-													<input type="text" class="form-control" id="publish-year1" name="publishYear">
+													<input type="text" class="form-control" id="publish-year1" name="PublishingYear">
 												</div>
 
 												<div class="form-group">
@@ -248,16 +247,17 @@
 
 
 												<div class="form-group">
+													<img alt="" id="bookImage">
 													<label for="imgage-url1">Image:</label>
-													<input type="file" class="form-control-file" id="imgage-url1" accept="image/*" name="imageFile">
+													<input type="file" class="form-control-file" id="imgage-url1" name="ImageFile">
 												</div>
 
 											</div>
 										</div>
-									<button type="submit" class="btn btn-primary btn-save">Save changes</button>
+										<button type="submit" class="btn btn-primary btn-save">Save changes</button>
 
 									</form>
-									
+
 
 								</div>
 

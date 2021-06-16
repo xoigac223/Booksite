@@ -30,7 +30,6 @@ function renderBook(Books) {
 }
 
 function renderCategories(categories, selectCategory) {
-	console.log(categories, selectCategory)
 	$("#category1 option").remove();
 	let categoriesClone = [...categories];
 	let allCate = categoriesClone.map(category => (
@@ -38,16 +37,15 @@ function renderCategories(categories, selectCategory) {
 	))
 	categories.forEach((category, index) => {
 		selectCategory && selectCategory.forEach(selectCategory => {
-			console.log(category, selectCategory.id)
 			category.id === selectCategory.id && (allCate[index] = `<option value=${category.id} selected>${category.name}</option>`);
 		})
 	});
-	console.log(allCate);
 
 	$("#category1").append(allCate);
 }
 
 function renderDataEdit(data, category) {
+	console.log(typeof `${data.imageUrl}`);
 	$("#bookId").val(data.id);
 	$("#name1").val(data.name);
 	$("#price1").val(data.price);
@@ -59,97 +57,101 @@ function renderDataEdit(data, category) {
 	$("#publish-year1").val(data.publishingYear);
 	$("#description1").val(data.description);
 	$("#details1").val(data.details);
-	$("#imgage-url1").val(data.imageUrl);
-	// $("#")
-	// $(".btn-save").click(function (e) {
-	// 	let reader = new FileReader();
-	// 	reader.readAsDataURL($('#imgage-url1')[0].files[0]);
-	// 	const book = {
-	// 		id: parseInt($("#bookId").val()),
-	// 		name: $("#name1").val(),
-	// 		price: parseInt($("#price1").val()),
-	// 		status: parseInt($("#status1").val()),
-	// 		pages: parseInt($("#pages1").val()),
-	// 		author: $("#author1").val(),
-	// 		publisher: $("#publisher1").val(),
-	// 		publishingYear: $("#publish-year1").val(),
-	// 		description: $("#description1").val(),
-	// 		details: $("#details1").val(),
-	// 		imageFile: reader.result,
-	// 	}
-	// 	fetchApi(`/api/Book/${data.id}`, "PUT", book).then(data => console.log(data))
-	// 		.catch((err) => console.log(err))
-	// 	$("#imgage-url").files;
-		
-	// 	console.log(URL.createObjectURL($('#imgage-url1')[0].files[0]));
-	// })
-
-	$("form#data").submit(function (event) {
-		
-
-		var formData = new FormData(this);
-		console.log(formData);
-		$.ajax({
-			url: `/api/Book/${data.id}`,
-			type: 'PUT',
-			data: formData,
-			
-			// success: function (data) {
-			// 	alert(data)
-			// },
-		
-		});
-		event.preventDefault();
-		return false;
-	});
 
 }
+
+function addCategory(categoriesSelect, book) {
+	console.log(book)
+	let body;
+	let arrayCurrentBookId = [...book.categories].map(item => item.id);
+	categoriesSelect.forEach(cateSelectedId => {
+		cateSelectedId = parseInt(cateSelectedId);
+		if (arrayCurrentBookId.indexOf(cateSelectedId) < 0) {
+			body = {
+				category: cateSelectedId,
+				book: book.id
+			}
+			fetchApi("/api/CategoryBook", "POST", body);
+		}
+		// })
+	})
+	arrayCurrentBookId.forEach(deleteId => {
+		console.log("deleteId ", deleteId )
+		console.log(categoriesSelect)
+		if(categoriesSelect.indexOf(deleteId.toString()) < 0) {
+			fetchApi(`/api/CategoryBook/${deleteId}`, "DELETE");
+		}
+	})
+}
+
+
 $(document).ready(async function () {
 	//call api category
 	let categories;
 	await fetchApi("/api/Category", "GET")
 		.then(data => {
 			categories = data;
-			// fetchApi(`/api/Book/${}`)
-			console.log(categories)
-			// renderCategories(categories);
 		})
 
 	// call api book
 	await fetchApi("/api/book", "GET")
 		.then(data => {
 			renderBook(data);
+		}).then(() => {
 			$(".btn-action").click(function () {
 				let bookId = $(this).parent().prevAll().filter("#Id").text();
 				bookId = parseInt(bookId);
+
+
 				fetchApi(`/api/Book/${bookId}`, "GET")
 					.then(data => {
 						renderDataEdit(data, categories);
+						$("#data").submit(function (event) {
+							var formData = new FormData($(this)[0]);
+
+							$.ajax({
+								url: `/api/Book/${data.id}`,
+								type: 'PUT',
+								data: formData,
+								processData: false,
+								contentType: false,
+								cache: false,
+								success: async function () {
+
+									addCategory($("#category1").val(), data);
+									// window.location.reload();
+								},
+							});
+							event.preventDefault();
+						});
+
 					});
-
 			})
-		});
 
-
+		})
 
 	$(".fa-list").click(() => {
 		$(".sidebar-wrapper").toggleClass("sidebar-toggle");
 		$(".col-lg-10").toggleClass("col-lg-12")
 	})
 
+	$('category1').change(function () {
+		alert($('category1').val());
+	});
+
 	// $("#action button").click(() => {
 	//     $(this).hide();
 	// })
 
-	$("#action button").click(function () {
-		$(this).toggleClass("btn-success");
-		if ($(this).hasClass("btn-success")) {
-			$(this).text("Success")
-		} else {
-			$(this).text("Confirm")
-		}
+	// $("#action button").click(function () {
+	// 	$(this).toggleClass("btn-success");
+	// 	if ($(this).hasClass("btn-success")) {
+	// 		$(this).text("Success")
+	// 	} else {
+	// 		$(this).text("Confirm")
+	// 	}
 
-	});
+	// });
 
 	// if ($("#body-table tr").length === 0) {
 	//     $("tbody").append(`<div style="height: 100px">No Data</div>`)
@@ -172,7 +174,22 @@ $(document).ready(async function () {
 	})
 
 
+	// $("#data").submit(function (event) {
 
+	// 	// var formData = $(this).serialize();
+	// 	// $.ajax({
+	// 	// 	url: `/api/Book/${data.id}`,
+	// 	// 	type: 'PUT',
+	// 	// 	data: formData,
+
+	// 	// 	success: function (data) {
+	// 	// 		alert(data)
+	// 	// 	},
+
+	// 	// });
+	// 	event.preventDefault();
+	// 	// return false;
+	// });
 
 
 })
