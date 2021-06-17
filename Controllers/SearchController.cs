@@ -34,7 +34,7 @@ namespace BookShop.Controllers
         [HttpGet("book")]
         public JsonResult GetBooks(SieveModel sieveModel)
         {
-            var result = _context.Books.AsNoTracking();
+            var result = _context.Books.OrderByDescending(b => b.Id).AsNoTracking();
             result = _sieveProcessor.Apply(sieveModel, result);
             return Json(result);
         }
@@ -43,6 +43,7 @@ namespace BookShop.Controllers
         {
             var result = Enumerable.Empty<OrderDto>().AsQueryable();
             var orders = _context.Orders.ToList();
+            orders.Reverse();
             foreach (var order in orders)
             {
                 OrderDto dto = new OrderDto();
