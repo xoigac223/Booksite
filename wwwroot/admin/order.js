@@ -94,16 +94,17 @@ function renderDetailOrder(orderId) {
     
     fetchApi(`/api/OrderDetail/${orderId}`, "GET").then(res => res.json())
         .then(data => { 
+            $(".item-order-details").remove();
             let item = data.map((item) => (`
             <div class="item-order-details">
                 <div class="row">
                     <div class="col">
-                        <div class="book-id">Book Id: ${item.book.id}</div>
-                        <div class="book-id">Book Name: ${item.book.name}</div>
+                        <div class="book-id"><span>Book Id</span>: ${item.book.id}</div>
+                        <div class="book-id"><span>Book Name</span>: ${item.book.name}</div>
                     </div>
                     <div class="col">
-                        <div class="book-id">Book Price: ${item.book.price}</div>
-                        <div class="book-id">Book Quantity: ${item.quantity}</div>
+                        <div class="book-id"><span>Book Price</span>: ${item.book.price}</div>
+                        <div class="book-id"><span>Book Quantity</span>: ${item.quantity}</div>
                     </div>
                 </div>
             </div>

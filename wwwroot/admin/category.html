@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="order.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <title>Admin</title>
+</head>
+
+<body>
+    <div class="fluid-container admin-container">
+        <div class="row admin-layout">
+            <!-- Alert -->
+            <div class="alert alert-success  fade show " role="alert"
+                style="position: absolute; top: 50px; right: 50px; font-size: 14px;display: none;">
+                Confirm Successfully!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: 40px;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="alert alert-danger  fade show " role="alert"
+                style="position: absolute; top: 50px; right: 50px; font-size: 14px;display: none;">
+                Confirm Error!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: 40px;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="col-lg-2 sidebar-wrapper">
+                <div class="sidebar">
+                    <div class="sidebar-header">
+                        <i class="fas fa-book"></i>
+                        Book Admin
+                    </div>
+                    <hr />
+                    <div class="item">
+                        <a href="index.html" class="item_link">
+                            <i class="fas fa-home"></i>
+                            Home
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="order.html" class="item_link">
+                            <i class="fas fa-gift"></i>
+                            Order
+                        </a>
+                    </div>
+                    <div class="item ">
+                        <a href="book.html" class="item_link"><i class="fas fa-book"></i>Book</a>
+                    </div>
+                    <div class="item">
+                        <a href="category.html item-tab-active" class="item_link">
+                            <i class="fas fa-book"></i>
+                            Category
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-10">
+
+                <!-- header nav -->
+                <div class="row nav">
+                    <div class="nav-icon-list">
+                        <i class="fas fa-list"></i>
+                    </div>
+                </div>
+                <!-- content -->
+                <div class="row table-order">
+                    <div class="title">
+                        <div style="font-size: 18px;
+						padding: 10px;
+						padding-bottom: 5px;">Category Table</div>
+                        <div style="font-size: 14px;padding-left: 10px;">Here is details's Category table</div>
+                    </div>
+
+
+                    <!-- Modal Add book -->
+                    <!-- Button trigger modal -->
+                    <div class="add-btn">
+                        <button type="button" class="btn btn-success btn-lg btn-add" data-toggle="modal"
+                            data-target="#addBook">
+                            <i class="fas fa-plus"></i>Add Category
+                        </button>
+                    </div>
+
+                    <!-- Modal Add-->
+                    <div class="modal fade" id="addBook" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document" style="width: 30%;">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Add Category</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <form class="form-horizontal form" method="POST" id="add">
+                                        <div class="row">
+                                            <div class="col" style="padding-left: 25px;">
+
+                                                <div class="form-group">
+                                                    <label for="name1">Name :</label>
+                                                    <input type="text" class="form-control" id="name" name="name"
+                                                        autocomplete="off" required>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+                                        <div style="width: 100%;display: flex; justify-content: center;"><button
+                                                type="button" class="btn btn-primary btn-addCate">Add Category</button>
+                                        </div>
+                                    </form>
+
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Edit-->
+
+                    <div class="modal fade" id="editBook" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document" style="width: 30%;">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Edit Category</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <form class="form-horizontal form" id="data">
+                                        <div class="row">
+                                            <div class="col" style="padding: 25px;">
+                                                <div class="form-group">
+                                                    <label for="bookId">Id:</label>
+                                                    <input class="form-control" id="bookId" name="id" autocomplete="off"
+                                                        disabled required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="name1">Name :</label>
+                                                    <input type="text" class="form-control" id="name1" name="name"
+                                                        autocomplete="off" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div style="width: 100%;display: flex; justify-content: center;"><button
+                                                type="button" class="btn btn-primary btn-save">Save changes</button>
+                                        </div>
+
+                                    </form>
+
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <table class="table table-hover table-bordered table-striped text-lg-center table-content">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-table">
+
+                        </tbody>
+                    </table>
+
+                    <!-- Pagination -->
+
+                    <div class="pagination-wrapper">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item page-item-number active">
+                                    <p class="page-link">1</p>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="category.js"></script>
+    <!-- <script src="book.js"></script> -->
+</body>
+
+</html>
