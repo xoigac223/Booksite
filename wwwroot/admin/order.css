@@ -82,7 +82,7 @@ label {
 }
 
 .modal {
-	padding-left: 100px;
+  padding-left: 100px;
 }
 
 .modal-dialog {
@@ -100,11 +100,18 @@ label {
   margin-right: 5px;
 }
 
-.page-item, .page-link {
+.page-item,
+.page-link {
   cursor: pointer;
   margin-right: 2px;
 }
-
-
-
-
+.model-content-order-detail {
+  max-height: 700px;
+  overflow-y: auto;
+}
+.item-order-details {
+  padding: 10px 20px;
+  border: 1px solid #e3e3e3;
+  margin-top: 10px;
+  font-size: 14px;
+}

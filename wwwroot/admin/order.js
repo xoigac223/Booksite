@@ -10,7 +10,8 @@ function fetchApi(apiUrl, method, body) {
 }
 
 function renderOrderTable() {
-    return fetchApi("/api/Order?page=1&pageSize=10", "GET").then(res => res.json()).then(data => {
+    return fetchApi("/api/Search/order?page=1&pageSize=10", "GET").then(res => res.json()).then(data => {
+        console.log(data)
         let allData = data.map(element => (
             `<tr>
                 <td id="Id">${element.id}</td>
@@ -21,6 +22,7 @@ function renderOrderTable() {
                 <td>${element.email}</td>
                 <td>${element.shipping}</td>
                 <td>${element.dateBill}</td>
+                <td>${element.total}</td>
                 <td id="action">            
                     <button class="btn btn-primary 
                         ${element.status !== 0 ? "btn-success" : "btn-action-confirm"}" 
@@ -32,7 +34,9 @@ function renderOrderTable() {
                     </button>
                 </td>
                 <td id="action">
-                    <button class="btn btn-primary btn-action"><i class="fas fa-eye"></i> Watch</button>
+                    <button class="btn btn-primary btn-action-details "  data-toggle="modal" 
+                    data-target="#details"
+                    id="${element.id}"><i class="fas fa-eye"></i> Watch</button>
                 </td>
                 </tr>
             `
@@ -86,16 +90,43 @@ function renderPagination() {
     })
 }
 
+function renderDetailOrder(orderId) {
+    
+    fetchApi(`/api/OrderDetail/${orderId}`, "GET").then(res => res.json())
+        .then(data => { 
+            let item = data.map((item) => (`
+            <div class="item-order-details">
+                <div class="row">
+                    <div class="col">
+                        <div class="book-id">Book Id: ${item.book.id}</div>
+                        <div class="book-id">Book Name: ${item.book.name}</div>
+                    </div>
+                    <div class="col">
+                        <div class="book-id">Book Price: ${item.book.price}</div>
+                        <div class="book-id">Book Quantity: ${item.quantity}</div>
+                    </div>
+                </div>
+            </div>
+            `))
+            $(".modal-order-detail").append(item);
+         })
+}
+
 function alert(type) {
     $(type).slideDown();
     $(type).alert();
     // $('.alert').alert('close')
     setTimeout(() => { $(type).alert('close') }, 500);
 }
+
 // function fetchDataOrderDetail()
 $(document).ready(async function () {
     await renderOrderTable();
-
+    $(".btn-action-details").click(function() {
+        let orderId = $(this).parent().prevAll().filter("#Id").text();
+        orderId = parseInt(orderId);
+        renderDetailOrder(orderId);
+    })
 
     $(".fa-list").click(() => {
         $(".sidebar-wrapper").toggleClass("sidebar-toggle");

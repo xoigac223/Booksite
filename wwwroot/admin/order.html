@@ -20,26 +20,24 @@
 	<div class="fluid-container admin-container">
 
 		<div class="row admin-layout">
-				<!-- alert -->
-				<div class="alert alert-success  fade show " role="alert" 
-				style="position: absolute; top: 50px; right: 50px; font-size: 14px;display: none;"
-				>
-					Confirm Successfully!
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: 40px;">
-						<span aria-hidden="true">&times;</span>
-					  </button>
-				</div>
+			<!-- alert -->
+			<div class="alert alert-success  fade show " role="alert"
+				style="position: absolute; top: 50px; right: 50px; font-size: 14px;display: none;">
+				Confirm Successfully!
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: 40px;">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
 
-				<div class="alert alert-danger  fade show " role="alert" 
-				style="position: absolute; top: 50px; right: 50px; font-size: 14px;display: none;"
-				>
-					Confirm Error!
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: 40px;">
-						<span aria-hidden="true">&times;</span>
-					  </button>
-				</div>
+			<div class="alert alert-danger  fade show " role="alert"
+				style="position: absolute; top: 50px; right: 50px; font-size: 14px;display: none;">
+				Confirm Error!
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: 40px;">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
 
-		
+
 			<div class="col-lg-2 sidebar-wrapper">
 				<div class="sidebar">
 					<div class="sidebar-header">
@@ -65,7 +63,7 @@
 							Book
 						</a>
 					</div>
-				
+
 				</div>
 			</div>
 			<div class="col-lg-10">
@@ -123,6 +121,40 @@
 					</div>
 				</div>
 
+				<!-- Modal details -->
+				<div class="modal fade" id="details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document " style="width: 70%;">
+						<div class="modal-content model-content-order-detail">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Modal Details</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body modal-order-detail">
+<!-- 
+								<div class="item-order-details">
+									<div class="row">
+										<div class="col">
+											<div class="book-id">Book Id:</div>
+											<div class="book-id">BookId: 8</div>
+										</div>
+										<div class="col">
+											<div class="book-id">Book Id:</div>
+											<div class="book-id">BookId: 8</div>
+										</div>
+
+									</div>
+								</div> -->
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<!-- content -->
 
 				<div class="row table-order">
@@ -144,6 +176,7 @@
 								<th>Email</th>
 								<th>Ship</th>
 								<th>Date bill</th>
+								<th>Total</th>
 								<th style="width:10%;">Status</th>
 								<th style="width:10%;">Detail Order</th>
 							</tr>
@@ -166,7 +199,6 @@
 						</nav>
 					</div>
 
-					<div class="save-btn"><button class="btn btn-primary">Save Order</button></div>
 
 				</div>
 
