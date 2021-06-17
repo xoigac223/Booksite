@@ -115,6 +115,13 @@ function renderPagination() {
 	})
 }
 
+function alert(type) {
+    $(type).slideDown();
+    $(type).alert();
+    // $('.alert').alert('close')
+    setTimeout(() => { $(type).alert('close') }, 500);
+}
+
 
 $(document).ready(async function () {
 	//call api category
@@ -153,6 +160,7 @@ $(document).ready(async function () {
 									await addCategory($("#category1").val(), data);
 									window.location.reload();
 								},
+								
 							});
 							event.preventDefault();
 						});

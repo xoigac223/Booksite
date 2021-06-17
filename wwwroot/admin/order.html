@@ -18,7 +18,28 @@
 
 <body>
 	<div class="fluid-container admin-container">
+
 		<div class="row admin-layout">
+				<!-- alert -->
+				<div class="alert alert-success  fade show " role="alert" 
+				style="position: absolute; top: 50px; right: 50px; font-size: 14px;display: none;"
+				>
+					Confirm Successfully!
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: 40px;">
+						<span aria-hidden="true">&times;</span>
+					  </button>
+				</div>
+
+				<div class="alert alert-danger  fade show " role="alert" 
+				style="position: absolute; top: 50px; right: 50px; font-size: 14px;display: none;"
+				>
+					Confirm Error!
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-left: 40px;">
+						<span aria-hidden="true">&times;</span>
+					  </button>
+				</div>
+
+		
 			<div class="col-lg-2 sidebar-wrapper">
 				<div class="sidebar">
 					<div class="sidebar-header">
@@ -32,7 +53,7 @@
 							Home
 						</a>
 					</div>
-					<div class="item">
+					<div class="item item-tab-active">
 						<a href="order.html" class="item_link">
 							<i class="fas fa-gift"></i>
 							Order
@@ -44,9 +65,7 @@
 							Book
 						</a>
 					</div>
-					<div class="item">
-						<a href="#" class="item_link">Home</a>
-					</div>
+				
 				</div>
 			</div>
 			<div class="col-lg-10">
@@ -59,46 +78,50 @@
 					</div>
 				</div>
 				<!-- Modal Confirm -->
-				<div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-					<div class="modal-dialog" role="document "style="width: 30%;">
-					  <div class="modal-content" >
-						<div class="modal-header">
-						  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						  </button>
+				<div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document " style="width: 30%;">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								Confirm the order
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary btn-save-order"
+									data-dismiss="modal">Confirm OK</button>
+							</div>
 						</div>
-						<div class="modal-body">
-						  Confirm the order
-						</div>
-						<div class="modal-footer">
-						  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						  <button type="button" class="btn btn-primary btn-save-order" data-dismiss="modal">Confirm OK</button>
-						</div>
-					  </div>
 					</div>
-				  </div>
+				</div>
 
-				  <!-- Modal Cancel -->
-				<div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-					<div class="modal-dialog" role="document "style="width: 30%;">
-					  <div class="modal-content" >
-						<div class="modal-header">
-						  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						  </button>
+				<!-- Modal Cancel -->
+				<div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document " style="width: 30%;">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								Cancel the order
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-danger btn-cancel-order"
+									data-dismiss="modal">Confirm Cancel</button>
+							</div>
 						</div>
-						<div class="modal-body">
-						  Cancel the order
-						</div>
-						<div class="modal-footer">
-						  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						  <button type="button" class="btn btn-danger btn-cancel-order" data-dismiss="modal">Confirm Cancel</button>
-						</div>
-					  </div>
 					</div>
-				  </div>
+				</div>
 
 				<!-- content -->
 
@@ -109,7 +132,7 @@
 						padding-bottom: 5px;">Order Table</div>
 						<div style="font-size: 14px;padding-left: 10px;">Here is details's order table</div>
 					</div>
-					
+
 					<table class="table table-hover table-bordered table-striped text-lg-center table-content">
 						<thead>
 							<tr>
@@ -126,8 +149,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							
-							
+
+
 						</tbody>
 					</table>
 
@@ -136,23 +159,8 @@
 					<div class="pagination-wrapper">
 						<nav aria-label="Page navigation example">
 							<ul class="pagination">
-								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Previous">
-										<span aria-hidden="true">&laquo;</span>
-										<span class="sr-only">Previous</span>
-									</a>
-								</li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item active">
-									<a class="page-link" href="#">2 </a>
-								</li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Next">
-										<span aria-hidden="true">&raquo;</span>
-										<span class="sr-only">Next</span>
-									</a>
+								<li class="page-item page-item-number active">
+									<p class="page-link">1</p>
 								</li>
 							</ul>
 						</nav>

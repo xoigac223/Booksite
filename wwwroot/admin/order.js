@@ -10,7 +10,7 @@ function fetchApi(apiUrl, method, body) {
 }
 
 function renderOrderTable() {
-    return fetchApi("/api/Order", "GET").then(res => res.json()).then(data => {
+    return fetchApi("/api/Order?page=1&pageSize=10", "GET").then(res => res.json()).then(data => {
         let allData = data.map(element => (
             `<tr>
                 <td id="Id">${element.id}</td>
@@ -22,8 +22,8 @@ function renderOrderTable() {
                 <td>${element.shipping}</td>
                 <td>${element.dateBill}</td>
                 <td id="action">            
-                    <button class="btn btn-primary btn-action-confirm 
-                        ${element.status !== 0 ? "btn-success" : ""}" 
+                    <button class="btn btn-primary 
+                        ${element.status !== 0 ? "btn-success" : "btn-action-confirm"}" 
                         data-toggle="modal" 
                         data-target=${element.status === 0 ? "#confirm" : "#cancel"} 
                         id="${element.id}"
@@ -48,10 +48,11 @@ async function confirmOrder(orderId) {
         dataOrder.status = 1;
         fetchApi(`/api/Order/${orderId}`, "PUT", dataOrder)
             .then(() => {
-                // $(`#${orderId}`).removeClass("btn-action-confirm");
-                // $(`#${orderId}`).addClass("btn-success");
-                // $(`#${orderId}`).text("Success");
-                window.location.reload()
+                alert('.alert-success');
+                setTimeout(() => { window.location.reload() }, 500);
+            }).catch((err) => {
+                alert('.alert-danger');
+
             });
     })
 }
@@ -63,13 +64,33 @@ async function cancelOrder(orderId) {
         dataOrder.status = 0;
         fetchApi(`/api/Order/${orderId}`, "PUT", dataOrder)
             .then(() => {
-                // $(`#${orderId}`).addClass("btn-action-confirm");
-                // $(`#${orderId}`).removeClass("btn-success");
-                // $(`#${orderId}`).text("Confirm");
-                window.location.reload()
-
+                alert('.alert-success');
+                setTimeout(() => { window.location.reload() }, 500);
+            }).catch((err) => {
+                alert('.alert-danger');
             });
     })
+}
+
+function renderPagination() {
+    return fetchApi("/api/Order", "GET").then(data => {
+        let totalPage = Math.ceil(data.length / 10);
+        let pagination = [];
+        for (let i = 1; i < totalPage; i++) {
+            pagination.push(`
+				<li class="page-item page-item-number"><p class="page-link">${i + 1}</p></li>
+			`)
+        }
+        $(".pagination").append(pagination);
+
+    })
+}
+
+function alert(type) {
+    $(type).slideDown();
+    $(type).alert();
+    // $('.alert').alert('close')
+    setTimeout(() => { $(type).alert('close') }, 500);
 }
 // function fetchDataOrderDetail()
 $(document).ready(async function () {
@@ -93,5 +114,13 @@ $(document).ready(async function () {
         confirmOrder(orderId);
     })
 
-   
+    await renderPagination();
+    $(".page-item-number").click(function () {
+        $(".pagination li").removeClass("active");
+        $(this).toggleClass("active");
+        fetchApi(`/api/Search/book?page=${$(this).text()}&pageSize=10`, "GET").then(data => {
+            renderBook(data);
+        })
+    })
+
 })

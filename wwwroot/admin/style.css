@@ -65,6 +65,10 @@ hr {
   margin: 10px 0;
 }
 
+.item-tab-active {
+  background-color: #78a6f0;
+}
+
 .sidebar .item:hover {
   background-color: #78a6f0;
   color: #fff;
