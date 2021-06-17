@@ -100,5 +100,11 @@ label {
   margin-right: 5px;
 }
 
+.page-item, .page-link {
+  cursor: pointer;
+  margin-right: 2px;
+}
+
+
 
 

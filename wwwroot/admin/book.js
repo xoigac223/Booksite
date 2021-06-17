@@ -11,6 +11,7 @@ function fetchApi(apiUrl, method, body) {
 
 
 function renderBook(Books) {
+	$("#body-table tr").remove();
 	let allBook = Books.map(book => (
 		`<tr>
         <td id="Id">${book.id}</td>
@@ -78,9 +79,39 @@ function addCategory(categoriesSelect, book) {
 		// })
 	})
 	arrayCurrentBookId.forEach(deleteId => {
-		if(categoriesSelect.indexOf(deleteId.toString()) < 0) {
+		if (categoriesSelect.indexOf(deleteId.toString()) < 0) {
 			fetchApi(`/api/CategoryBook/${deleteId}/${book.id}`, "DELETE");
 		}
+	})
+}
+
+function addCategoryNew(categoriesSelect, book) {
+
+	categoriesSelect.forEach(cateSelectedId => {
+		cateSelectedId = parseInt(cateSelectedId);
+
+		let body = {
+			category: cateSelectedId,
+			book: book.id
+		}
+		fetchApi("/api/CategoryBook", "POST", body);
+
+		// })
+	})
+
+}
+
+function renderPagination() {
+	return fetchApi("/api/book", "GET").then(data => {
+		let totalPage = Math.ceil(data.length/10);
+		let pagination = [];
+		for(let i = 1; i < totalPage; i++) {
+			pagination.push(`
+				<li class="page-item page-item-number"><p class="page-link">${i+1}</p></li>
+			`)
+		}
+		$(".pagination").append(pagination);
+	
 	})
 }
 
@@ -93,9 +124,10 @@ $(document).ready(async function () {
 			categories = data;
 		})
 	renderCategories(categories)
-
+	
+	
 	// call api book
-	await fetchApi("/api/book", "GET")
+	await fetchApi("/api/Search/book?page=1&pageSize=10", "GET")
 		.then(data => {
 			renderBook(data);
 		}).then(() => {
@@ -130,23 +162,34 @@ $(document).ready(async function () {
 
 		})
 
-		$("#add").submit(function (event) {
-			var formData = new FormData($(this)[0]);
+	$("#add").submit(function (event) {
+		var formData = new FormData($(this)[0]);
 
-			$.ajax({
-				url: `/api/Book/${data.id}`,
-				type: 'POST',
-				data: formData,
-				processData: false,
-				contentType: false,
-				cache: false,
-				success: async function (data) {
-					await addCategory($("#category").val(), data);
-					window.location.reload();
-				},
-			});
-			event.preventDefault();
+		$.ajax({
+			url: `/api/Book`,
+			type: 'POST',
+			data: formData,
+			processData: false,
+			contentType: false,
+			cache: false,
+			success: async function (data) {
+				console.log(data);
+				await addCategoryNew($("#category").val(), data);
+				window.location.reload();
+			},
 		});
+		event.preventDefault();
+	});
+
+	await renderPagination();
+	$(".page-item-number").click(function(){
+		$(".pagination li").removeClass("active");
+		$(this).toggleClass("active");
+		fetchApi(`/api/Search/book?page=${$(this).text()}&pageSize=10`, "GET").then(data => {
+			renderBook(data);
+		})
+	})
+	
 
 	// $("#action button").click(() => {
 	//     $(this).hide();
