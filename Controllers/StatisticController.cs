@@ -39,7 +39,7 @@ namespace BookShop.Controllers
                 books = _context.Books.Count(),
                 categories= _context.Categories.Count(),
                 ordes = _context.Categories.Count(),
-                users = _context.Users.Count(),
+                users = GetSales(),
                 sales = sales,
                 bestSells = GetBestSellDictionary()
             });
@@ -52,7 +52,7 @@ namespace BookShop.Controllers
             foreach (var order in orders)
             {
                 float tmp = 0;
-                if (order.DateBill.Month == month && order.DateBill.Year == year)
+                if (order.DateBill.Month == month && order.DateBill.Year == year && order.Status == 1)
                 {
                     var queryable = _context.OrderDetails.AsNoTracking().Join(
                         _context.Books,
@@ -83,15 +83,59 @@ namespace BookShop.Controllers
             var books = _context.Books.Include(book => book.OrderDetails).ToList();
             foreach (var book in books)
             {
+                var queryable = _context.OrderDetails.AsNoTracking().Join(
+                        _context.Orders,
+                        detail => detail.OrderId,
+                        order => order.Id,
+                        (detail, order) => new
+                        {
+                            IDBOOK = detail.BookId,
+                            QTY = detail.Quantity,
+                            STATUS = order.Status,
+                        }
+                    ).Where(q => q.IDBOOK == book.Id && q.STATUS == 1);
+                
                 float sale = 0;
-                foreach (var order in book.OrderDetails)
+                foreach (var q in queryable)
                 {
-                    sale += book.Price * order.Quantity;
+                    sale += book.Price * q.QTY;
                 }
                 result.Add(book.Name, sale);
             }
 
             return result.OrderByDescending(x => x.Value).Take(5).ToDictionary(x => x.Key, x => x.Value);
+        }
+        
+        private float GetSales()
+        {
+            float result = 0;
+            var orders = _context.Orders.ToList();
+            foreach (var order in orders)
+            {
+                float tmp = 0;
+                if (order.Status == 1)
+                {
+                    var queryable = _context.OrderDetails.AsNoTracking().Join(
+                        _context.Books,
+                        detail => detail.BookId,
+                        book => book.Id,
+                        (detail, book) => new
+                        {
+                            ID = detail.OrderId,
+                            price = book.Price,
+                            qty = detail.Quantity
+                        }
+                    ).Where(q => q.ID == order.Id);
+
+                    foreach (var q in queryable)
+                    {
+                        tmp += q.price * q.qty;
+                    }
+                }
+                result += tmp;
+            }
+            
+            return result;
         }
     }
 }

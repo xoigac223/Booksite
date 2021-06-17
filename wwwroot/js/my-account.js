@@ -43,7 +43,6 @@ $(document).ready(function() {
                 encode: true,
                 success: function () {
                     login(formData);
-                    location.reload();
                 },
                 error: function (jqXHR) {
                     let msg = JSON.parse(jqXHR.responseText).message;
